@@ -29,3 +29,8 @@ INSERT INTO [Location].[Destination] (City, State, PostCode) VALUES('Rajshahi', 
 SELECT @LastId = SCOPE_IDENTITY();
 INSERT INTO [Location].[BookingOffice] (DestinationId, AddressLine1, Area, Email, PrimaryContact) VALUES(@LastId, '2/109 Shaheb Bazar Road', 'Rajshahi Sadar', 'rajshahi.sadar@vrs.com.bd', '01711665878'); 
 INSERT INTO [Location].[Destination] (City, State, PostCode) VALUES('Chittagong', 'Chittagong', 4000);
+
+DECLARE @OutgoingRouteId BIGINT;
+DECLARE @IncomingRouteId BIGINT;
+EXEC [Route].[AddVehicleRoute] 1, 2, @OutgoingRouteId OUT, @IncomingRouteId OUT;
+EXEC [Route].[AddVehicleRoute] 1, 3, @OutgoingRouteId OUT, @IncomingRouteId OUT;

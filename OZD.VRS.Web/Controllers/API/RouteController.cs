@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OZD.VRS.Repository;
+
 using OZD.VRS.Service.Interfaces;
 
 namespace OZD.VRS.Web.Controllers.API
@@ -36,7 +31,7 @@ namespace OZD.VRS.Web.Controllers.API
         /// Gets the destination by source.
         /// </summary>
         /// <param name="sourceId">The source identifier.</param>
-        /// <returns></returns>
+        /// <returns>Collection of destinations.</returns>
         [HttpGet]
         [Route("destinationsbysource/{sourceId:long}")]
         public string GetDestinationsBySource(long sourceId)
