@@ -59,10 +59,49 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="User" />
-    <Folder Include="Schema" />
+    <Folder Include="Scripts" />
+    <Folder Include="Vehicle" />
+    <Folder Include="Location" />
+    <Folder Include="Route" />
+    <Folder Include="Location\Tables" />
+    <Folder Include="Location\Procedures" />
+    <Folder Include="Location\Constraints" />
+    <Folder Include="Route\Constraints" />
+    <Folder Include="Route\Procedures" />
+    <Folder Include="Route\Tables" />
+    <Folder Include="Vehicle\Tables" />
+    <Folder Include="Vehicle\Constraints" />
+    <Folder Include="Vehicle\Procedures" />
+    <Folder Include="User\Tables" />
+    <Folder Include="User\Constraints" />
+    <Folder Include="User\Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="User\UserCredential.sql" />
-    <Build Include="Schema\User.sql" />
+    <Build Include="Location\Tables\BookingOffice.sql" />
+    <Build Include="Location\Tables\Destination.sql" />
+    <Build Include="Location\Constraints\FK_BookingOffice_DestinationId.sql" />
+    <Build Include="Route\Tables\VehicleRoute.sql" />
+    <Build Include="Vehicle\Tables\VehicleDetail.sql" />
+    <Build Include="Vehicle\Constraints\UK_VehicleDetail_Registration.sql" />
+    <Build Include="Vehicle\Vehicle.sql" />
+    <Build Include="Route\Route.sql" />
+    <Build Include="Location\Location.sql" />
+    <Build Include="User\Tables\UserCredential.sql" />
+    <Build Include="User\Constraints\CHK_UserDetail_PostalAddress.sql" />
+    <Build Include="User\Constraints\FK_UserDetail_UserId.sql" />
+    <Build Include="User\Constraints\UK_UserCredential_UserName.sql" />
+    <Build Include="User\User.sql" />
+    <Build Include="Route\Procedures\AddVehicleRoute.sql" />
+    <Build Include="Route\Constraints\FK_VehicleRoute_FromDestinationId.sql" />
+    <Build Include="Route\Constraints\FK_VehicleRoute_ToDestinationId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Test Data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="VRS.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="User\Tables\UserDetail.sql" />
   </ItemGroup>
 </Project>

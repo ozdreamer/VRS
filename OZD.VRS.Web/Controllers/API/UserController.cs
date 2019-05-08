@@ -1,6 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using OZD.VRS.Repository;
+
+using Newtonsoft.Json;
+using OZD.VRS.DataInterface.Models;
+using OZD.VRS.Service.Interfaces;
 
 namespace OZD.VRS.Web.Controllers.API
 {
@@ -9,24 +14,29 @@ namespace OZD.VRS.Web.Controllers.API
     public class UserController : ControllerBase
     {
         /// <summary>
-        /// The context.
+        /// The database service.
         /// </summary>
-        private readonly VehicleContext context;
+        private readonly IDatabaseService databaseService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public UserController(VehicleContext context)
+        public UserController(IDatabaseService databaseService)
         {
-            this.context = context;
+            this.databaseService = databaseService;
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Gets the specified user information.
         /// </summary>
-        /// <returns>The number of users.</returns>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>The specific user information.</returns>
         [HttpGet]
-        public string Get() => this.context.UserCredentials.Count().ToString();
+        [Route("userdetails/{userName}")]
+        public string GetUserDetails(string userName)
+        {
+            return JsonConvert.SerializeObject(this.databaseService.GetUserDetails(userName));
+        }
     }
 }

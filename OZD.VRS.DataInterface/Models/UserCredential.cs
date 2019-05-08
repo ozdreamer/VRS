@@ -1,8 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace OZD.VRS.DataInterface.Models
 {
+    /// <summary>
+    /// The basic credentials to identify a user.
+    /// </summary>
+    /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
     [Table("UserCredential", Schema = "User")]
     public class UserCredential : BaseDto
     {
@@ -18,6 +24,14 @@ namespace OZD.VRS.DataInterface.Models
         /// </summary>
         /// <value>The password.</value>
         [Required]
+        [XmlIgnore, JsonIgnore]
         public string Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user details.
+        /// </summary>
+        /// <value>The user details.</value>
+        [XmlIgnore, JsonIgnore]
+        public virtual UserDetail UserDetails { get; set; }
     }
 }

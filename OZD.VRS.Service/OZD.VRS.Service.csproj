@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OZD.VRS.DataInterface\OZD.VRS.DataInterface.csproj" />
+    <ProjectReference Include="..\OZD.VRS.Repository\OZD.VRS.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

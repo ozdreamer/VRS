@@ -9,6 +9,7 @@ namespace OZD.VRS.DataInterface.Models
         /// </summary>
         /// <value>The identifier.</value>
         [Required]
+        [Key]
         public long Id { get; set; }
     }
 }
