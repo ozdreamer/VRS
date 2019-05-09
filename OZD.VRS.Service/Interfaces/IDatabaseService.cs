@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OZD.VRS.DataInterface.Models;
 
 namespace OZD.VRS.Service.Interfaces
 {
     public interface IDatabaseService
     {
+        /// <summary>
+        /// Saves the changes.
+        /// </summary>
+        /// <returns>The change results.</returns>
+        Task<int> SaveChanges();
+
         #region User
 
         /// <summary>
@@ -18,14 +25,14 @@ namespace OZD.VRS.Service.Interfaces
         /// Creates the user credential.
         /// </summary>
         /// <param name="userCredential">The user credential.</param>
-        /// <returns>The new user credential id.</returns>
-        long CreateUserCredential(UserCredential userCredential);
+        /// <returns>The new user credential.</returns>
+        UserCredential CreateUserCredential(UserCredential userCredential);
 
         /// <summary>
         /// Updates the user credential.
         /// </summary>
         /// <param name="userCredential">The user credential.</param>
-        void UpdateUserCredential(UserCredential userCredential);
+        UserCredential UpdateUserCredential(UserCredential userCredential);
 
         /// <summary>
         /// Deletes the user credential.
@@ -34,25 +41,25 @@ namespace OZD.VRS.Service.Interfaces
         void DeleteUserCredential(string userName);
 
         /// <summary>
-        /// Gets the user details.
+        /// Gets the user detail.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <returns>The user detail.</returns>
-        UserDetail GetUserDetails(string userName);
+        UserDetail GetUserDetail(string userName);
 
         /// <summary>
         /// Creates the user detail.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="userDetail">The user detail.</param>
-        /// <returns>The user detail identifier.</returns>
-        long CreateUserDetail(string userName, UserDetail userDetail);
+        /// <returns>The user detail.</returns>
+        UserDetail CreateUserDetail(string userName, UserDetail userDetail);
 
         /// <summary>
         /// Updates the user detail.
         /// </summary>
         /// <param name="userDetail">The user detail.</param>
-        void UpdateUserDetail(UserDetail userDetail);
+        UserDetail UpdateUserDetail(UserDetail userDetail);
 
         #endregion
 
@@ -75,14 +82,14 @@ namespace OZD.VRS.Service.Interfaces
         /// Creates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
-        /// <returns>The new vehicle detail id.entifier</returns>
-        long CreateVehicleDetail(VehicleDetail vehicleDetail);
+        /// <returns>The new vehicle detail.</returns>
+        VehicleDetail CreateVehicleDetail(VehicleDetail vehicleDetail);
 
         /// <summary>
         /// Updates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
-        void UpdateVehicleDetail(VehicleDetail vehicleDetail);
+        VehicleDetail UpdateVehicleDetail(VehicleDetail vehicleDetail);
 
         /// <summary>
         /// Deletes the vehicle detail.
@@ -112,13 +119,13 @@ namespace OZD.VRS.Service.Interfaces
         /// </summary>
         /// <param name="destination">The destination.</param>
         /// <returns>The new destination identifier.</returns>
-        long CreateDestination(Destination destination);
+        Destination CreateDestination(Destination destination);
 
         /// <summary>
         /// Updates the destination.
         /// </summary>
         /// <param name="destination">The destination.</param>
-        void UpdateDestination(Destination destination);
+        Destination UpdateDestination(Destination destination);
 
         /// <summary>
         /// Deletes destination.
@@ -144,13 +151,13 @@ namespace OZD.VRS.Service.Interfaces
         /// </summary>
         /// <param name="bookingOffice">The bookingOffice.</param>
         /// <returns>The new bookingOffice identifier.</returns>
-        long CreateBookingOffice(BookingOffice bookingOffice);
+        BookingOffice CreateBookingOffice(BookingOffice bookingOffice);
 
         /// <summary>
         /// Updates the bookingOffice.
         /// </summary>
         /// <param name="bookingOffice">The bookingOffice.</param>
-        void UpdateBookingOffice(BookingOffice bookingOffice);
+        BookingOffice UpdateBookingOffice(BookingOffice bookingOffice);
 
         /// <summary>
         /// Deletes bookingOffice.
@@ -161,6 +168,27 @@ namespace OZD.VRS.Service.Interfaces
         #endregion
 
         #region Route
+
+        /// <summary>
+        /// Gets the route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>The vehicle route.</returns>
+        Route GetRoute(long routeId);
+
+        /// <summary>
+        /// Creates the route.
+        /// </summary>
+        /// <param name="fromDestinationId">From destination identifier.</param>
+        /// <param name="toDestinationId">To destination identifier.</param>
+        /// <returns>The collection of newly create routes.</returns>
+        ICollection<Route> CreateRoute(long fromDestinationId, long toDestinationId);
+
+        /// <summary>
+        /// Deletes the route.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        void DeleteRoute(Route route);
 
         /// <summary>
         /// Gets the destinations by source.

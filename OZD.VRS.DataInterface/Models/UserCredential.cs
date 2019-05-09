@@ -28,10 +28,17 @@ namespace OZD.VRS.DataInterface.Models
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the user detail identifier.
+        /// </summary>
+        /// <value>The user detail identifier.</value>
+        public long? UserDetailId { get; set; }
+
+        /// <summary>
         /// Gets or sets the user details.
         /// </summary>
         /// <value>The user details.</value>
+        [ForeignKey("UserDetailId")]
         [XmlIgnore, JsonIgnore]
-        public virtual UserDetail UserDetails { get; set; }
+        public virtual UserDetail UserDetail { get; set; }
     }
 }

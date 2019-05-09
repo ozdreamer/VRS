@@ -32,5 +32,5 @@ INSERT INTO [Location].[Destination] (City, State, PostCode) VALUES('Chittagong'
 
 DECLARE @OutgoingRouteId BIGINT;
 DECLARE @IncomingRouteId BIGINT;
-EXEC [Route].[AddVehicleRoute] 1, 2, @OutgoingRouteId OUT, @IncomingRouteId OUT;
-EXEC [Route].[AddVehicleRoute] 1, 3, @OutgoingRouteId OUT, @IncomingRouteId OUT;
+EXEC [Route].[AddRoute] 1, 2, @OutgoingRouteId OUT, @IncomingRouteId OUT;
+EXEC [Route].[AddRoute] 1, 3, @OutgoingRouteId OUT, @IncomingRouteId OUT;

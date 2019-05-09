@@ -38,5 +38,18 @@ namespace OZD.VRS.Web.Controllers.API
         {
             return JsonConvert.SerializeObject(this.databaseService.GetDestinationsBySource(sourceId));
         }
+
+        /// <summary>
+        /// Posts the create route.
+        /// </summary>
+        /// <param name="sourceId">The source identifier.</param>
+        /// <param name="destinationId">The destination identifier.</param>
+        /// <returns>Collection of create routes.</returns>
+        [HttpPost]
+        [Route("createroute/{sourceId:long}/{destinationId:long}")]
+        public string PostCreateRoute(long sourceId, long destinationId)
+        {
+            return JsonConvert.SerializeObject(this.databaseService.CreateRoute(sourceId, destinationId));
+        }
     }
 }

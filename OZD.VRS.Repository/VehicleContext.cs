@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using OZD.VRS.DataInterface.Models;
 
 namespace OZD.VRS.Repository
@@ -36,6 +40,74 @@ namespace OZD.VRS.Repository
         }
 
         /// <summary>
+        /// Executes the stored procedures.
+        /// </summary>
+        /// <param name="storeProcedureName">Name of the store procedure.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="outParameters">The out parameters.</param>
+        /// <returns>The execution result.</returns>
+        public object ExecuteStoredProcedure(string storeProcedureName, IReadOnlyDictionary<string, object> parameters = null, IDictionary<string, object> outParameters = null)
+        {
+            var connection = this.Database.GetDbConnection();
+            try
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = storeProcedureName;
+
+                // Attach the parameters.
+                if (parameters != null)
+                {
+                    foreach (var kvp in parameters)
+                    {
+                        var param = command.CreateParameter();
+                        param.Direction = ParameterDirection.Input;
+                        param.ParameterName = kvp.Key;
+                        param.Value = kvp.Value;
+                        command.Parameters.Add(param);
+                    }
+                }
+
+                // Attach the out parameters.
+                if (outParameters != null)
+                {
+                    foreach (var kvp in outParameters)
+                    {
+                        var param = command.CreateParameter();
+                        param.Direction = ParameterDirection.Output;
+                        param.ParameterName = kvp.Key;
+                        param.Value = kvp.Value;
+                        command.Parameters.Add(param);
+                    }
+                }
+
+                connection.Open();
+
+                var result = command.ExecuteScalar();
+
+                // Populate the return values to the out parameters for the caller to be used.
+                if (outParameters != null)
+                {
+                    var commandParameters = command.Parameters.OfType<IDbDataParameter>().Where(x => x.Direction == ParameterDirection.Output);
+                    foreach (var outParameter in outParameters.ToList())
+                    {
+                        var param = commandParameters.First(x => x.ParameterName == outParameter.Key);
+                        outParameters[param.ParameterName] = param.Value;
+                    }
+                }
+
+                connection.Close();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the user credentials.
         /// </summary>
         /// <value>The user credentials.</value>
@@ -66,9 +138,15 @@ namespace OZD.VRS.Repository
         public DbSet<BookingOffice> BookingOffices { get; set; }
 
         /// <summary>
-        /// Gets or sets the vehicle routes.
+        /// Gets or sets the routes.
         /// </summary>
-        /// <value>The vehicle routes.</value>
-        public DbSet<VehicleRoute> VehicleRoutes { get; set; }
+        /// <value>The routes.</value>
+        public DbSet<Route> Routes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the route schedules.
+        /// </summary>
+        /// <value>The route schedules.</value>
+        public DbSet<RouteSchedule> RouteSchedules { get; set; }
     }
 }

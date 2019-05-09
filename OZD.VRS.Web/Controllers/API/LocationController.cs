@@ -43,10 +43,10 @@ namespace OZD.VRS.Web.Controllers.API
         /// <returns>The destination identifier.</returns>
         [HttpPost]
         [Route("createdestination/{destination}")]
-        public long CreateDestination(string destination)
+        public string CreateDestination(string destination)
         {
             var destinationDataModel = JsonConvert.DeserializeObject<Destination>(destination);
-            return this.databaseService.CreateDestination(destinationDataModel);
+            return JsonConvert.SerializeObject(this.databaseService.CreateDestination(destinationDataModel));
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace OZD.VRS.Web.Controllers.API
         /// </summary>
         /// <returns>The booking office identifier.</returns>
         [HttpPost]
-        [Route("createbookingoffice")]
-        public long CreatBookingOffice(string bookingOffice)
+        [Route("createbookingoffice/{bookingOffice}")]
+        public string CreatBookingOffice(string bookingOffice)
         {
             var bookingOfficeDataModel = JsonConvert.DeserializeObject<BookingOffice>(bookingOffice);
-            return this.databaseService.CreateBookingOffice(bookingOfficeDataModel);
+            return JsonConvert.SerializeObject(this.databaseService.CreateBookingOffice(bookingOfficeDataModel));
         }
     }
 }

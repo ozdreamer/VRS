@@ -36,7 +36,7 @@ namespace OZD.VRS.Web.Controllers.API
         [Route("userdetails/{userName}")]
         public string GetUserDetails(string userName)
         {
-            return JsonConvert.SerializeObject(this.databaseService.GetUserDetails(userName));
+            return JsonConvert.SerializeObject(this.databaseService.GetUserDetail(userName));
         }
     }
 }

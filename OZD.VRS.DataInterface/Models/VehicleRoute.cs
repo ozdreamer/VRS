@@ -10,8 +10,8 @@ namespace OZD.VRS.DataInterface.Models
     /// The route between two locations.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("VehicleRoute", Schema = "Route")]
-    public class VehicleRoute : BaseDto
+    [Table("Route", Schema = "Route")]
+    public class Route : BaseDto
     {
         /// <summary>
         /// Gets or sets from destination identifier.
