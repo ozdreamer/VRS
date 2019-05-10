@@ -10,9 +10,11 @@ namespace OZD.VRS.DataInterface.Models
     /// The full details of each user.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("UserDetail", Schema = "User")]
+    [Table("UserDetail", Schema = "Config")]
     public class UserDetail : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets the user identifier.
         /// </summary>
@@ -164,6 +166,10 @@ namespace OZD.VRS.DataInterface.Models
         [Required]
         public bool UseAddressAsPostal { get; set; }
 
+        #endregion
+
+        #region Linked Properties
+
         /// <summary>
         /// Gets or sets the user credential.
         /// </summary>
@@ -171,5 +177,17 @@ namespace OZD.VRS.DataInterface.Models
         [XmlIgnore, JsonIgnore]
         [ForeignKey("UserId")]
         public virtual UserCredential UserCredential { get; set; }
+
+        #endregion
+
+        #region Non-mapped Properties
+
+        /// <summary>
+        /// Gets the name of the user.
+        /// </summary>
+        /// <value>The name of the user.</value>
+        public string UserName => this.UserCredential?.UserName;
+
+        #endregion
     }
 }

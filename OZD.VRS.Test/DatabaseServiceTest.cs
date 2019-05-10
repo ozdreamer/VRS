@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using Autofac;
 using Autofac.Builder;
@@ -62,28 +61,28 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var user1 = new UserCredential { UserName = "ozdreamer.it@gmail.com", Password = "pass1" };
-            var user2 = new UserCredential { UserName = "k.h.rajeeb@gmail.com", Password = "pass2" };
+            var user1 = new UserCredential { UserName = "email01@test.com", Password = "pass1" };
+            var user2 = new UserCredential { UserName = "email02@test.com", Password = "pass2" };
             databaseService.CreateUserCredential(user1);
             databaseService.CreateUserCredential(user2);
 
-            user1 = databaseService.GetUserCredential("ozdreamer.it@gmail.com");
+            user1 = databaseService.GetUserCredential("email01@test.com");
             Assert.AreEqual(user1.Password, "pass1");
 
-            user2 = databaseService.GetUserCredential("k.h.rajeeb@gmail.com");
+            user2 = databaseService.GetUserCredential("email02@test.com");
             Assert.AreEqual(user2.Password, "pass2");
 
             user2.Password = "pass3";
             databaseService.UpdateUserCredential(user2);
 
-            user2 = databaseService.GetUserCredential("k.h.rajeeb@gmail.com");
+            user2 = databaseService.GetUserCredential("email02@test.com");
             Assert.AreEqual(user2.Password, "pass3");
 
-            databaseService.DeleteUserCredential("ozdreamer.it@gmail.com");
-            databaseService.DeleteUserCredential("k.h.rajeeb@gmail.com");
+            databaseService.DeleteUserCredential("email01@test.com");
+            databaseService.DeleteUserCredential("email02@test.com");
 
-            Assert.AreEqual(databaseService.GetUserCredential("ozdreamer.it@gmail.com"), null);
-            Assert.AreEqual(databaseService.GetUserCredential("k.h.rajeeb@gmail.com"), null);
+            Assert.AreEqual(databaseService.GetUserCredential("email01@test.com"), null);
+            Assert.AreEqual(databaseService.GetUserCredential("email02@test.com"), null);
         }
 
         /// <summary>
@@ -94,27 +93,27 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var user = new UserCredential { UserName = "ozdreamer.it@gmail.com", Password = "pass1" };
+            var user = new UserCredential { UserName = "email01@test.com", Password = "pass1" };
             databaseService.CreateUserCredential(user);
-            var userDetail = new UserDetail { FirstName = "Kamrul", LastName = "Hasan", DateOfBirth = new DateTime(1980, 11, 9), AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", UseAddressAsPostal = true };
-            databaseService.CreateUserDetail("ozdreamer.it@gmail.com", userDetail);
+            var userDetail = new UserDetail { FirstName = "Test", LastName = "Name", DateOfBirth = new DateTime(1980, 11, 9), AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", UseAddressAsPostal = true };
+            databaseService.CreateUserDetail("email01@test.com", userDetail);
 
-            userDetail = databaseService.GetUserDetail("ozdreamer.it@gmail.com");
+            userDetail = databaseService.GetUserDetail("email01@test.com");
             Assert.AreEqual(userDetail.DateOfBirth, new DateTime(1980, 11, 9));
             Assert.AreEqual(userDetail.AddressCity, "Heathwood");
-            Assert.AreEqual($"{userDetail.FirstName} {userDetail.LastName}", "Kamrul Hasan");
+            Assert.AreEqual($"{userDetail.FirstName} {userDetail.LastName}", "Test Name");
             Assert.IsTrue(userDetail.UseAddressAsPostal);
 
             userDetail.DateOfBirth = userDetail.DateOfBirth.AddMonths(1);
             userDetail.DateOfBirth = userDetail.DateOfBirth.AddDays(5);
-            userDetail.LastName = "Islam";
+            userDetail.LastName = "Modified";
             databaseService.UpdateUserDetail(userDetail);
             Assert.AreEqual(userDetail.DateOfBirth, new DateTime(1980, 12, 14));
-            Assert.AreEqual($"{userDetail.FirstName} {userDetail.LastName}", "Kamrul Islam");
+            Assert.AreEqual($"{userDetail.FirstName} {userDetail.LastName}", "Test Modified");
 
-            databaseService.DeleteUserCredential("ozdreamer.it@gmail.com");
-            Assert.AreEqual(databaseService.GetUserDetail("ozdreamer.it@gmail.com"), null);
-            Assert.AreEqual(databaseService.GetUserCredential("ozdreamer.it@gmail.com"), null);
+            databaseService.DeleteUserCredential("email01@test.com");
+            Assert.AreEqual(databaseService.GetUserDetail("email01@test.com"), null);
+            Assert.AreEqual(databaseService.GetUserCredential("email01@test.com"), null);
         }
 
         /// <summary>
@@ -130,7 +129,35 @@ namespace OZD.VRS.Test
             var destination2 = new Destination { City = "Rajshahi", State = "Rajshahi", PostCode = 6000 };
             destination2 = databaseService.CreateDestination(destination2);
 
-            Assert.AreEqual(databaseService.GetAllDestinations().Count, 2);
+            destination1 = databaseService.GetDestination(destination1.Id);
+            Assert.AreEqual(destination1.State, "Dhaka");
+            destination2 = databaseService.GetDestination(destination2.Id);
+            Assert.AreEqual(destination2.City, "Rajshahi");
+            Assert.AreEqual(destination2.PostCode, 6000);
+
+            destination2.PostCode = 6001;
+            destination2.City = "Shalbagan";
+            databaseService.UpdateDestination(destination1);
+
+            destination2 = databaseService.GetDestination(destination2.Id);
+            Assert.AreEqual(destination2.PostCode, 6001);
+            Assert.AreEqual(destination2.City, "Shalbagan");
+
+            databaseService.DeleteDestination(destination1.Id);
+            databaseService.DeleteDestination(destination2.Id);
+            Assert.AreEqual(databaseService.GetDestination(destination1.Id), null);
+            Assert.AreEqual(databaseService.GetDestination(destination2.Id), null);
+        }
+
+        [TestMethod]
+        public void TestRoutes()
+        {
+            var databaseService = this.container.Resolve<IDatabaseService>();
+
+            var destination1 = new Destination { City = "Dhaka", State = "Dhaka", PostCode = 1000 };
+            destination1 = databaseService.CreateDestination(destination1);
+            var destination2 = new Destination { City = "Rajshahi", State = "Rajshahi", PostCode = 6000 };
+            destination2 = databaseService.CreateDestination(destination2);
 
             var routes = databaseService.CreateRoute(destination1.Id, destination2.Id);
             Assert.AreEqual(routes.Count, 2);
@@ -146,7 +173,8 @@ namespace OZD.VRS.Test
 
             databaseService.DeleteDestination(destination1.Id);
             databaseService.DeleteDestination(destination2.Id);
-            Assert.AreEqual(databaseService.GetAllDestinations().Count, 0);
+            Assert.AreEqual(databaseService.GetDestination(destination1.Id), null);
+            Assert.AreEqual(databaseService.GetDestination(destination2.Id), null);
         }
     }
 }

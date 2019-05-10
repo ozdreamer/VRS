@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Location].[Destination]
+﻿CREATE TABLE [Config].[Destination]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [City] NVARCHAR(128) NOT NULL, 

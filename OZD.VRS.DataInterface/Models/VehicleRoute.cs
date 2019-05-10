@@ -10,9 +10,11 @@ namespace OZD.VRS.DataInterface.Models
     /// The route between two locations.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("Route", Schema = "Route")]
+    [Table("Route", Schema = "Config")]
     public class Route : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets from destination identifier.
         /// </summary>
@@ -26,6 +28,10 @@ namespace OZD.VRS.DataInterface.Models
         /// <value>To destination identifier.]</value>
         [Required]
         public long ToDestinationId { get; set; }
+
+        #endregion
+
+        #region Linked Properties
 
         /// <summary>
         /// Gets or sets from destination.
@@ -42,5 +48,7 @@ namespace OZD.VRS.DataInterface.Models
         [ForeignKey("ToDestinationId")]
         [XmlIgnore, JsonIgnore]
         public virtual Destination To { get; set; }
+
+        #endregion
     }
 }

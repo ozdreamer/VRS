@@ -145,21 +145,21 @@ namespace OZD.VRS.Service
         /// Gets all vehicle details.
         /// </summary>
         /// <returns>Collection of vehicle details.</returns>
-        public ICollection<VehicleDetail> GetAllVehicleDetails() => this.context.VehicleDetails.ToList();
+        public ICollection<Vehicle> GetAllVehicleDetails() => this.context.VehicleDetails.ToList();
 
         /// <summary>
         /// Gets the vehicle detail.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
         /// <returns>The vehicle detail.</returns>
-        public VehicleDetail GetVehicleDetail(long vehicleId) => this.context.VehicleDetails.FirstOrDefault(x => x.Id == vehicleId);
+        public Vehicle GetVehicleDetail(long vehicleId) => this.context.VehicleDetails.FirstOrDefault(x => x.Id == vehicleId);
 
         /// <summary>
         /// Creates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
         /// <returns>The new vehicle detail id.entifier</returns>
-        public VehicleDetail CreateVehicleDetail(VehicleDetail vehicleDetail)
+        public Vehicle CreateVehicleDetail(Vehicle vehicleDetail)
         {
             this.context.VehicleDetails.Add(vehicleDetail);
             this.context.SaveChanges();
@@ -170,7 +170,7 @@ namespace OZD.VRS.Service
         /// Updates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
-        public VehicleDetail UpdateVehicleDetail(VehicleDetail vehicleDetail)
+        public Vehicle UpdateVehicleDetail(Vehicle vehicleDetail)
         {
             var existingVehicleDetail = this.GetVehicleDetail(vehicleDetail.Id);
             if (existingVehicleDetail != null)

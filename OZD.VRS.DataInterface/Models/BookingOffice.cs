@@ -10,7 +10,7 @@ namespace OZD.VRS.DataInterface.Models
     /// The information about the ticket booking offices.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("BookingOffice", Schema = "Location")]
+    [Table("BookingOffice", Schema = "Config")]
     public class BookingOffice : BaseDto
     {
         /// <summary>

@@ -123,7 +123,7 @@ namespace OZD.VRS.Repository
         /// Gets or sets the vehicle details.
         /// </summary>
         /// <value>The vehicle details.</value>
-        public DbSet<VehicleDetail> VehicleDetails { get; set; }
+        public DbSet<Vehicle> VehicleDetails { get; set; }
 
         /// <summary>
         /// Gets or sets the destination.

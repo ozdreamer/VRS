@@ -53,7 +53,7 @@ namespace OZD.VRS.DataInterface
         /// </summary>
         /// <param name="from">From.</param>
         /// <param name="to">To.</param>
-        public static void UpdateVehicleDetail(VehicleDetail from, ref VehicleDetail to)
+        public static void UpdateVehicleDetail(Vehicle from, ref Vehicle to)
         {
             to.VIN = from.VIN;
             to.VehicleType = from.VehicleType;

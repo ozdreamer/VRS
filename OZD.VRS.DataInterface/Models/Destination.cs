@@ -7,7 +7,7 @@ namespace OZD.VRS.DataInterface.Models
     /// The destination where the vehicles operate.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("Destination", Schema = "Location")]
+    [Table("Destination", Schema = "Config")]
     public class Destination : BaseDto
     {
         /// <summary>

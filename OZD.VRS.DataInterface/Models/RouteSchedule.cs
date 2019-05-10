@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace OZD.VRS.DataInterface.Models
 {
-    [Table("RouteSchedule", Schema = "Route")]
+    [Table("RouteSchedule", Schema = "Config")]
     public class RouteSchedule : BaseDto
     {
         /// <summary>

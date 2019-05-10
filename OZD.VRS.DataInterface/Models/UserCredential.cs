@@ -9,7 +9,7 @@ namespace OZD.VRS.DataInterface.Models
     /// The basic credentials to identify a user.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("UserCredential", Schema = "User")]
+    [Table("UserCredential", Schema = "Config")]
     public class UserCredential : BaseDto
     {
         /// <summary>

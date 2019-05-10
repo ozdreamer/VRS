@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OZD.VRS.DataInterface.Models
 {
-    [Table("VehicleDetail", Schema = "Vehicle")]
-    public class VehicleDetail : BaseDto
+    [Table("Vehicle", Schema = "Vehicle")]
+    public class Vehicle : BaseDto
     {
         /// <summary>
         /// Gets or sets the vehicle identification number.

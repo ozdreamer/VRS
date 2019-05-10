@@ -69,27 +69,27 @@ namespace OZD.VRS.Service.Interfaces
         /// Gets all vehicle details.
         /// </summary>
         /// <returns>Collection of vehicle details.</returns>
-        ICollection<VehicleDetail> GetAllVehicleDetails();
+        ICollection<Vehicle> GetAllVehicleDetails();
 
         /// <summary>
         /// Gets the vehicle detail.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
         /// <returns>The vehicle detail.</returns>
-        VehicleDetail GetVehicleDetail(long vehicleId);
+        Vehicle GetVehicleDetail(long vehicleId);
 
         /// <summary>
         /// Creates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
         /// <returns>The new vehicle detail.</returns>
-        VehicleDetail CreateVehicleDetail(VehicleDetail vehicleDetail);
+        Vehicle CreateVehicleDetail(Vehicle vehicleDetail);
 
         /// <summary>
         /// Updates the vehicle detail.
         /// </summary>
         /// <param name="vehicleDetail">The vehicle detail.</param>
-        VehicleDetail UpdateVehicleDetail(VehicleDetail vehicleDetail);
+        Vehicle UpdateVehicleDetail(Vehicle vehicleDetail);
 
         /// <summary>
         /// Deletes the vehicle detail.

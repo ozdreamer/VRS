@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Location].[BookingOffice]
+﻿CREATE TABLE [Config].[BookingOffice]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[DestinationId] BIGINT NOT NULL,

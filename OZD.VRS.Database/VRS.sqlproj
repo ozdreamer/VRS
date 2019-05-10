@@ -58,48 +58,32 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="User" />
     <Folder Include="Scripts" />
-    <Folder Include="Vehicle" />
-    <Folder Include="Location" />
-    <Folder Include="Route" />
-    <Folder Include="Location\Tables" />
-    <Folder Include="Location\Procedures" />
-    <Folder Include="Location\Constraints" />
-    <Folder Include="Route\Constraints" />
-    <Folder Include="Route\Procedures" />
-    <Folder Include="Route\Tables" />
-    <Folder Include="Vehicle\Tables" />
-    <Folder Include="Vehicle\Constraints" />
-    <Folder Include="Vehicle\Procedures" />
-    <Folder Include="User\Tables" />
-    <Folder Include="User\Constraints" />
-    <Folder Include="User\Procedures" />
+    <Folder Include="Config" />
+    <Folder Include="Config\Tables" />
+    <Folder Include="Config\Procedures" />
+    <Folder Include="Config\Constraints" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Location\Tables\BookingOffice.sql" />
-    <Build Include="Location\Tables\Destination.sql" />
-    <Build Include="Location\Constraints\FK_BookingOffice_DestinationId.sql" />
-    <Build Include="Route\Tables\Route.sql" />
-    <Build Include="Vehicle\Tables\VehicleDetail.sql" />
-    <Build Include="Vehicle\Constraints\UK_VehicleDetail_Registration.sql" />
-    <Build Include="Vehicle\Vehicle.sql" />
-    <Build Include="Route\Route.sql" />
-    <Build Include="Location\Location.sql" />
-    <Build Include="User\Tables\UserCredential.sql" />
-    <Build Include="User\Constraints\CHK_UserDetail_PostalAddress.sql" />
-    <Build Include="User\Constraints\FK_UserDetail_UserId.sql" />
-    <Build Include="User\Constraints\UK_UserCredential_UserName.sql" />
-    <Build Include="User\User.sql" />
-    <Build Include="Route\Constraints\FK_Route_FromDestinationId.sql" />
-    <Build Include="Route\Constraints\FK_Route_ToDestinationId.sql" />
-    <Build Include="Route\Tables\RouteSchedule.sql" />
-    <Build Include="User\Constraints\FK_UserCredential_UserDetailId.sql" />
+    <Build Include="Config\Tables\BookingOffice.sql" />
+    <Build Include="Config\Tables\Destination.sql" />
+    <Build Include="Config\Constraints\FK_BookingOffice_DestinationId.sql" />
+    <PostDeploy Include="Scripts\Test Data.sql" />
+    <Build Include="Config\Tables\UserCredential.sql" />
+    <Build Include="Config\Tables\UserDetail.sql" />
+    <Build Include="Config\Constraints\UK_VehicleDetail_Registration.sql" />
+    <Build Include="Config\Tables\Vehicle.sql" />
+    <Build Include="Config\Constraints\CHK_UserDetail_PostalAddress.sql" />
+    <Build Include="Config\Constraints\FK_UserCredential_UserDetailId.sql" />
+    <Build Include="Config\Constraints\FK_UserDetail_UserId.sql" />
+    <Build Include="Config\Constraints\UK_UserCredential_UserName.sql" />
+    <Build Include="Config\Config.sql" />
+    <Build Include="Config\Constraints\FK_Route_FromDestinationId.sql" />
+    <Build Include="Config\Constraints\FK_Route_ToDestinationId.sql" />
+    <Build Include="Config\Tables\Route.sql" />
+    <Build Include="Config\Tables\RouteSchedule.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VRS.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="User\Tables\UserDetail.sql" />
   </ItemGroup>
 </Project>

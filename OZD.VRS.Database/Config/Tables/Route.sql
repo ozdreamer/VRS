@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Route].[Route]
+﻿CREATE TABLE [Config].[Route]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[FromDestinationId] BIGINT NOT NULL,
