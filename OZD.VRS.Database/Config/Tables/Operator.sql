@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Config].[Operator]
+﻿CREATE TABLE [Admin].[Operator]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[Name] NVARCHAR(128) NOT NULL,

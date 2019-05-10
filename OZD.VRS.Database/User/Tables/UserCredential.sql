@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Config].[UserCredential]
+﻿CREATE TABLE [User].[UserCredential]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	[UserName] NVARCHAR(255) NOT NULL,

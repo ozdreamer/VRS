@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.Admin
 {
-    [Table("Vehicle", Schema = "Vehicle")]
+    [Table("Vehicle", Schema = "Admin")]
     public class Vehicle : BaseDto
     {
         /// <summary>

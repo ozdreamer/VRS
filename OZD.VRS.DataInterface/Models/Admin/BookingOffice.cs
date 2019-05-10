@@ -4,13 +4,13 @@ using System.Xml.Serialization;
 
 using Newtonsoft.Json;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.Admin
 {
     /// <summary>
     /// The information about the ticket booking offices.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("BookingOffice", Schema = "Config")]
+    [Table("BookingOffice", Schema = "Admin")]
     public class BookingOffice : BaseDto
     {
         /// <summary>

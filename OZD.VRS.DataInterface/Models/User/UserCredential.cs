@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.User
 {
     /// <summary>
     /// The basic credentials to identify a user.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("UserCredential", Schema = "Config")]
+    [Table("UserCredential", Schema = "User")]
     public class UserCredential : BaseDto
     {
         /// <summary>

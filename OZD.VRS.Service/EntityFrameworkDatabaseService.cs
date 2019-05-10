@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using OZD.VRS.DataInterface;
-using OZD.VRS.DataInterface.Models;
+using OZD.VRS.DataInterface.Models.Admin;
+using OZD.VRS.DataInterface.Models.User;
 using OZD.VRS.Repository;
 using OZD.VRS.Service.Interfaces;
 

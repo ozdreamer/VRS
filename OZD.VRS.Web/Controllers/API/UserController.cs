@@ -4,7 +4,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Newtonsoft.Json;
-using OZD.VRS.DataInterface.Models;
+using OZD.VRS.DataInterface.Models.User;
 using OZD.VRS.Service.Interfaces;
 
 namespace OZD.VRS.Web.Controllers.API

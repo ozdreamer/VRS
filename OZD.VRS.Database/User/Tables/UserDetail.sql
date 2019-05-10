@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Config].[UserDetail]
+﻿CREATE TABLE [User].[UserDetail]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[UserId] BIGINT NOT NULL,

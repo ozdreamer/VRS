@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.Admin
 {
     /// <summary>
     /// The destination where the vehicles operate.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("Destination", Schema = "Config")]
+    [Table("Destination", Schema = "Admin")]
     public class Destination : BaseDto
     {
         /// <summary>

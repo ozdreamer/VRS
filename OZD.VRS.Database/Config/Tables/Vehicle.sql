@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Config].[Vehicle]
+﻿CREATE TABLE [Admin].[Vehicle]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
 	[VIN] NVARCHAR(50) NULL, 

@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.User
 {
     /// <summary>
     /// The full details of each user.
     /// </summary>
     /// <seealso cref="OZD.VRS.DataInterface.Models.BaseDto" />
-    [Table("UserDetail", Schema = "Config")]
+    [Table("UserDetail", Schema = "User")]
     public class UserDetail : BaseDto
     {
         #region Mapped Properties

@@ -5,9 +5,9 @@ using System.Xml.Serialization;
 
 using Newtonsoft.Json;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.Admin
 {
-    [Table("RouteSchedule", Schema = "Config")]
+    [Table("RouteSchedule", Schema = "Admin")]
     public class RouteSchedule : BaseDto
     {
         #region Mapped Properties

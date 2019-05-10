@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using OZD.VRS.DataInterface.Models;
+using OZD.VRS.DataInterface.Models.Admin;
+using OZD.VRS.DataInterface.Models.User;
 using OZD.VRS.Repository;
 using OZD.VRS.Service;
 using OZD.VRS.Service.Interfaces;

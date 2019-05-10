@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using OZD.VRS.DataInterface.Models;
+
+using OZD.VRS.DataInterface.Models.Admin;
+using OZD.VRS.DataInterface.Models.User;
 
 namespace OZD.VRS.Repository
 {

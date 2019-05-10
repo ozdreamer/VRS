@@ -1,4 +1,4 @@
-﻿ALTER TABLE [Config].[RouteSchedule]
+﻿ALTER TABLE [Admin].[RouteSchedule]
 	ADD CONSTRAINT [FK_RouteSchedule_ToDestinationId]
 	FOREIGN KEY (ToDestinationId)
-	REFERENCES [Config].[Destination] (Id)
+	REFERENCES [Admin].[Destination] (Id)

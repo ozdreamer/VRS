@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OZD.VRS.DataInterface.Models
+namespace OZD.VRS.DataInterface.Models.Admin
 {
-    [Table("Operator", Schema = "Config")]
+    [Table("Operator", Schema = "Admin")]
     public class Operator : BaseDto
     {
         /// <summary>

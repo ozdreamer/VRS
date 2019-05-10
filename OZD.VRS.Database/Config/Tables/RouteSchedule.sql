@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Config].[RouteSchedule]
+﻿CREATE TABLE [Admin].[RouteSchedule]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[OperatorId] BIGINT NOT NULL,

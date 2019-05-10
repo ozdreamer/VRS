@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using OZD.VRS.DataInterface.Models;
+
+using OZD.VRS.DataInterface.Models.Admin;
 using OZD.VRS.Service.Interfaces;
 
 namespace OZD.VRS.Web.Controllers.API
