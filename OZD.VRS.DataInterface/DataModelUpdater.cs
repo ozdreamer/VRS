@@ -49,11 +49,11 @@ namespace OZD.VRS.DataInterface
         }
 
         /// <summary>
-        /// Updates the vehicle detail.
+        /// Updates the vehicle.
         /// </summary>
         /// <param name="from">From.</param>
         /// <param name="to">To.</param>
-        public static void UpdateVehicleDetail(Vehicle from, ref Vehicle to)
+        public static void UpdateVehicle(Vehicle from, ref Vehicle to)
         {
             to.VIN = from.VIN;
             to.VehicleType = from.VehicleType;
@@ -93,6 +93,39 @@ namespace OZD.VRS.DataInterface
             to.Email = from.Email;
             to.PrimaryContact = from.PrimaryContact;
             to.SecondaryContact = from.SecondaryContact;
+        }
+
+        /// <summary>
+        /// Updates the route schedule.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateRouteSchedule(RouteSchedule from, ref RouteSchedule to)
+        {
+            to.FromDestinationId = from.FromDestinationId;
+            to.ToDestinationId = from.ToDestinationId;
+            to.Day = from.Day;
+            to.Time = from.Time;
+        }
+
+        /// <summary>
+        /// Updates the operator.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateOperator(Operator from, ref Operator to)
+        {
+            to.Name = from.Name;
+            to.AddressLine1 = from.AddressLine1;
+            to.AddressLine2 = from.AddressLine2;
+            to.AddressArea = from.AddressArea;
+            to.AddressCity = from.AddressCity;
+            to.AddressState = from.AddressState;
+            to.AddressPostCode = from.AddressPostCode;
+            to.AddressCountry = from.AddressCountry;
+            to.PrimaryContact = from.PrimaryContact;
+            to.SecondaryContact = from.SecondaryContact;
+            to.PrimaryEmail = from.PrimaryEmail;
         }
     }
 }

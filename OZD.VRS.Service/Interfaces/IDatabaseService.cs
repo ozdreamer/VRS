@@ -66,36 +66,36 @@ namespace OZD.VRS.Service.Interfaces
         #region Vehicle
 
         /// <summary>
-        /// Gets all vehicle details.
+        /// Gets all vehicles.
         /// </summary>
-        /// <returns>Collection of vehicle details.</returns>
-        ICollection<Vehicle> GetAllVehicleDetails();
+        /// <returns>Collection of vehicles.</returns>
+        ICollection<Vehicle> GetAllVehicles();
 
         /// <summary>
-        /// Gets the vehicle detail.
+        /// Gets the vehicle.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
-        /// <returns>The vehicle detail.</returns>
-        Vehicle GetVehicleDetail(long vehicleId);
+        /// <returns>The vehicle.</returns>
+        Vehicle GetVehicle(long vehicleId);
 
         /// <summary>
         /// Creates the vehicle detail.
         /// </summary>
-        /// <param name="vehicleDetail">The vehicle detail.</param>
-        /// <returns>The new vehicle detail.</returns>
-        Vehicle CreateVehicleDetail(Vehicle vehicleDetail);
+        /// <param name="vehicle">The vehicle.</param>
+        /// <returns>The new vehicle.</returns>
+        Vehicle CreateVehicle(Vehicle vehicle);
 
         /// <summary>
-        /// Updates the vehicle detail.
+        /// Updates the vehicle.
         /// </summary>
-        /// <param name="vehicleDetail">The vehicle detail.</param>
-        Vehicle UpdateVehicleDetail(Vehicle vehicleDetail);
+        /// <param name="vehicle">The vehicle.</param>
+        Vehicle UpdateVehicle(Vehicle vehicle);
 
         /// <summary>
-        /// Deletes the vehicle detail.
+        /// Deletes the vehicle.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
-        void DeleteVehicleDetail(long vehicleId);
+        void DeleteVehicle(long vehicleId);
 
         #endregion
 
@@ -174,28 +174,63 @@ namespace OZD.VRS.Service.Interfaces
         /// </summary>
         /// <param name="routeId">The route identifier.</param>
         /// <returns>The vehicle route.</returns>
-        Route GetRoute(long routeId);
+        RouteSchedule GetRouteSchedule(long routeScheduleId);
 
         /// <summary>
-        /// Creates the route.
+        /// Creates the route schedule.
         /// </summary>
-        /// <param name="fromDestinationId">From destination identifier.</param>
-        /// <param name="toDestinationId">To destination identifier.</param>
-        /// <returns>The collection of newly create routes.</returns>
-        ICollection<Route> CreateRoute(long fromDestinationId, long toDestinationId);
+        /// <param name="routeSchedule">The route schedule.</param>
+        /// <returns>The route schedule.</returns>
+        RouteSchedule CreateRouteSchedule(RouteSchedule routeSchedule);
+
+        /// <summary>
+        /// Updates the route schedule.
+        /// </summary>
+        /// <param name="routeSchedule">The route schedule.</param>
+        /// <returns>The updated route schedule.</returns>
+        RouteSchedule UpdateRouteSchedule(RouteSchedule routeSchedule);
 
         /// <summary>
         /// Deletes the route.
         /// </summary>
         /// <param name="route">The route.</param>
-        void DeleteRoute(Route route);
+        void DeleteRouteSchedule(long routeScheduleId);
+
+        #endregion
+
+        #region Operator
 
         /// <summary>
-        /// Gets the destinations by source.
+        /// Gets all operators.
         /// </summary>
-        /// <param name="sourceId">The source identifier.</param>
-        /// <returns>Collection of destinations.</returns>
-        ICollection<Destination> GetDestinationsBySource(long sourceId);
+        /// <returns>Collection of operators.</returns>
+        ICollection<Operator> GetAllOperators();
+
+        /// <summary>
+        /// Gets the operator.
+        /// </summary>
+        /// <param name="operatorId">The operator identifier.</param>
+        /// <returns>The operator.</returns>
+        Operator GetOperator(long operatorId);
+
+        /// <summary>
+        /// Creates the operator.
+        /// </summary>
+        /// <param name="fleetOperator">The fleet operator.</param>
+        /// <returns>The new operator.</returns>
+        Operator CreateOperator(Operator fleetOperator);
+
+        /// <summary>
+        /// Updates the operator.
+        /// </summary>
+        /// <param name="fleetOperator">The fleet operator.</param>
+        Operator UpdateOperator(Operator fleetOperator);
+
+        /// <summary>
+        /// Deletes the operator.
+        /// </summary>
+        /// <param name="operatorId">The operator identifier.</param>
+        void DeleteOperator(long operatorId);
 
         #endregion
     }

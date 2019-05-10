@@ -142,41 +142,41 @@ namespace OZD.VRS.Service
         #region Vehicle
 
         /// <summary>
-        /// Gets all vehicle details.
+        /// Gets all vehicles.
         /// </summary>
-        /// <returns>Collection of vehicle details.</returns>
-        public ICollection<Vehicle> GetAllVehicleDetails() => this.context.VehicleDetails.ToList();
+        /// <returns>Collection of vehicles.</returns>
+        public ICollection<Vehicle> GetAllVehicles() => this.context.Vehicles.ToList();
 
         /// <summary>
-        /// Gets the vehicle detail.
+        /// Gets the vehicle.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
-        /// <returns>The vehicle detail.</returns>
-        public Vehicle GetVehicleDetail(long vehicleId) => this.context.VehicleDetails.FirstOrDefault(x => x.Id == vehicleId);
+        /// <returns>The vehicle.</returns>
+        public Vehicle GetVehicle(long vehicleId) => this.context.Vehicles.FirstOrDefault(x => x.Id == vehicleId);
 
         /// <summary>
-        /// Creates the vehicle detail.
+        /// Creates the vehicle.
         /// </summary>
-        /// <param name="vehicleDetail">The vehicle detail.</param>
-        /// <returns>The new vehicle detail id.entifier</returns>
-        public Vehicle CreateVehicleDetail(Vehicle vehicleDetail)
+        /// <param name="vehicle">The vehicle.</param>
+        /// <returns>The new vehicle identifier</returns>
+        public Vehicle CreateVehicle(Vehicle vehicle)
         {
-            this.context.VehicleDetails.Add(vehicleDetail);
+            this.context.Vehicles.Add(vehicle);
             this.context.SaveChanges();
-            return vehicleDetail;
+            return vehicle;
         }
 
         /// <summary>
-        /// Updates the vehicle detail.
+        /// Updates the vehicle.
         /// </summary>
-        /// <param name="vehicleDetail">The vehicle detail.</param>
-        public Vehicle UpdateVehicleDetail(Vehicle vehicleDetail)
+        /// <param name="vehicle">The vehicle.</param>
+        public Vehicle UpdateVehicle(Vehicle vehicle)
         {
-            var existingVehicleDetail = this.GetVehicleDetail(vehicleDetail.Id);
+            var existingVehicleDetail = this.GetVehicle(vehicle.Id);
             if (existingVehicleDetail != null)
             {
-                DataModelUpdater.UpdateVehicleDetail(vehicleDetail, ref existingVehicleDetail);
-                this.context.VehicleDetails.Update(existingVehicleDetail);
+                DataModelUpdater.UpdateVehicle(vehicle, ref existingVehicleDetail);
+                this.context.Vehicles.Update(existingVehicleDetail);
                 this.context.SaveChanges();
             }
 
@@ -184,15 +184,15 @@ namespace OZD.VRS.Service
         }
 
         /// <summary>
-        /// Deletes the vehicle detail.
+        /// Deletes the vehicle.
         /// </summary>
         /// <param name="vehicleId">The vehicle identifier.</param>
-        public void DeleteVehicleDetail(long vehicleId)
+        public void DeleteVehicle(long vehicleId)
         {
-            var existingVehicleDetail = this.GetVehicleDetail(vehicleId);
+            var existingVehicleDetail = this.GetVehicle(vehicleId);
             if (existingVehicleDetail != null)
             {
-                this.context.VehicleDetails.Remove(existingVehicleDetail);
+                this.context.Vehicles.Remove(existingVehicleDetail);
                 this.context.SaveChanges();
             }
         }
@@ -320,74 +320,112 @@ namespace OZD.VRS.Service
         /// <summary>
         /// Gets the route.
         /// </summary>
-        /// <param name="routeId">The route identifier.</param>
-        /// <returns>The vehicle route.</returns>
-        public Route GetRoute(long routeId) => this.context.Routes.FirstOrDefault(x => x.Id == routeId);
+        /// <param name="routeScheduleId">The route schedule identifier.</param>
+        /// <returns>The vehicle route schedule.</returns>
+        public RouteSchedule GetRouteSchedule(long routeScheduleId) => this.context.RouteSchedules.FirstOrDefault(x => x.Id == routeScheduleId);
 
         /// <summary>
-        /// Creates the route.
+        /// Creates the route schedule.
         /// </summary>
-        /// <param name="fromDestinationId">From destination identifier.</param>
-        /// <param name="toDestinationId">To destination identifier.</param>
-        /// <returns>The collection of newly create routes.</returns>
-        public ICollection<Route> CreateRoute(long fromDestinationId, long toDestinationId)
+        /// <param name="routeSchedule">The route schedule.</param>
+        /// <returns>The route schedule.</returns>
+        public RouteSchedule CreateRouteSchedule(RouteSchedule routeSchedule)
         {
-            var route1 = this.context.Routes.FirstOrDefault(x => x.FromDestinationId == fromDestinationId && x.ToDestinationId == toDestinationId);
-            if (route1 == null)
-            {
-                route1 = new Route { FromDestinationId = fromDestinationId, ToDestinationId = toDestinationId };
-                this.context.Routes.Add(route1);
-            }
-
-            var route2 = this.context.Routes.FirstOrDefault(x => x.FromDestinationId == toDestinationId && x.ToDestinationId == fromDestinationId);
-            if (route2 == null)
-            {
-                route2 = new Route { FromDestinationId = toDestinationId, ToDestinationId = fromDestinationId };
-                this.context.Routes.Add(route2);
-            }
-
+            this.context.RouteSchedules.Add(routeSchedule);
             this.context.SaveChanges();
-
-            return new[] { route1, route2 };
+            return routeSchedule;
         }
 
         /// <summary>
-        /// Deletes the route.
+        /// Updates the route schedule.
         /// </summary>
-        /// <param name="route">The route.</param>
-        public void DeleteRoute(Route route)
+        /// <param name="routeSchedule">The route schedule.</param>
+        /// <returns>The updated route schedule.</returns>
+        public RouteSchedule UpdateRouteSchedule(RouteSchedule routeSchedule)
         {
-            var existingRoute = this.context.Routes.FirstOrDefault(x => x.Id == route.Id);
+            var existingRoadSchedule = this.GetRouteSchedule(routeSchedule.Id);
+            if (existingRoadSchedule != null)
+            {
+                DataModelUpdater.UpdateRouteSchedule(routeSchedule, ref existingRoadSchedule);
+                this.context.Update(existingRoadSchedule);
+                this.context.SaveChanges();
+            }
+
+            return existingRoadSchedule;
+        }
+
+        /// <summary>
+        /// Deletes the route schedule.
+        /// </summary>
+        /// <param name="routeScheduleId">The route schedule identifier.</param>
+        public void DeleteRouteSchedule(long routeScheduleId)
+        {
+            var existingRoute = this.context.RouteSchedules.FirstOrDefault(x => x.Id == routeScheduleId);
             if (existingRoute != null)
             {
                 this.context.Remove(existingRoute);
                 this.context.SaveChanges();
             }
+        }
 
-            var reverseRoute = this.context.Routes.FirstOrDefault(x => x.FromDestinationId == route.ToDestinationId && x.ToDestinationId == route.FromDestinationId);
-            if (reverseRoute != null)
-            {
-                this.context.Remove(reverseRoute);
-                this.context.SaveChanges();
-            }
+        #endregion
+
+        #region Operator
+
+        /// <summary>
+        /// Gets all operators.
+        /// </summary>
+        /// <returns>Collection of operators.</returns>
+        public ICollection<Operator> GetAllOperators() => this.context.Operators.ToList();
+
+        /// <summary>
+        /// Gets the operator.
+        /// </summary>
+        /// <param name="operatorId">The operator identifier.</param>
+        /// <returns>The operator.</returns>
+        public Operator GetOperator(long operatorId) => this.context.Operators.FirstOrDefault(x => x.Id == operatorId);
+
+        /// <summary>
+        /// Creates the operator.
+        /// </summary>
+        /// <param name="fleetOperator">The fleet operator.</param>
+        /// <returns>The new operator.</returns>
+        public Operator CreateOperator(Operator fleetOperator)
+        {
+            this.context.Operators.Add(fleetOperator);
+            this.context.SaveChanges();
+            return fleetOperator;
         }
 
         /// <summary>
-        /// Gets the destinations by source.
+        /// Updates the operator.
         /// </summary>
-        /// <param name="sourceId">The source identifier.</param>
-        /// <returns>Collection of destinations.</returns>
-        public ICollection<Destination> GetDestinationsBySource(long sourceId)
+        /// <param name="fleetOperator">The fleet operator.</param>
+        public Operator UpdateOperator(Operator fleetOperator)
         {
-            var destinations = new List<Destination>();
-            var routes = this.context.Routes.Where(x => x.FromDestinationId == sourceId);
-            if (routes.Any())
+            var existingOperator = this.context.Operators.FirstOrDefault(x => x.Id == fleetOperator.Id);
+            if (existingOperator != null)
             {
-                var destinationIds = routes.Select(x => x.ToDestinationId);
-                destinations.AddRange(this.context.Destinations.Where(x => destinationIds.Contains(x.Id)));
+                DataModelUpdater.UpdateOperator(fleetOperator, ref existingOperator);
+                this.context.Update(existingOperator);
+                this.context.SaveChanges();
             }
 
-            return destinations;
+            return existingOperator;
+        }
+
+        /// <summary>
+        /// Deletes the operator.
+        /// </summary>
+        /// <param name="operatorId">The operator identifier.</param>
+        public void DeleteOperator(long operatorId)
+        {
+            var existingOperator = this.GetOperator(operatorId);
+            if (existingOperator != null)
+            {
+                this.context.Operators.Remove(existingOperator);
+                this.context.SaveChanges();
+            }
         }
 
         #endregion

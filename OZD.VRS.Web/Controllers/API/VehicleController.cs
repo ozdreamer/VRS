@@ -32,6 +32,6 @@ namespace OZD.VRS.Web.Controllers.API
         /// </summary>
         /// <returns>The collection of vehicles.</returns>
         [HttpGet]
-        public string Get() => JsonConvert.SerializeObject(this.context.VehicleDetails);
+        public string Get() => JsonConvert.SerializeObject(this.context.Vehicles);
     }
 }

@@ -123,7 +123,7 @@ namespace OZD.VRS.Repository
         /// Gets or sets the vehicle details.
         /// </summary>
         /// <value>The vehicle details.</value>
-        public DbSet<Vehicle> VehicleDetails { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         /// <summary>
         /// Gets or sets the destination.
@@ -138,15 +138,15 @@ namespace OZD.VRS.Repository
         public DbSet<BookingOffice> BookingOffices { get; set; }
 
         /// <summary>
-        /// Gets or sets the routes.
-        /// </summary>
-        /// <value>The routes.</value>
-        public DbSet<Route> Routes { get; set; }
-
-        /// <summary>
         /// Gets or sets the route schedules.
         /// </summary>
         /// <value>The route schedules.</value>
         public DbSet<RouteSchedule> RouteSchedules { get; set; }
+
+        /// <summary>
+        /// Gets or sets the operators.
+        /// </summary>
+        /// <value>The operators.</value>
+        public DbSet<Operator> Operators { get; set; }
     }
 }

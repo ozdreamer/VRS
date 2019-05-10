@@ -18,11 +18,19 @@ INSERT INTO [Config].[UserDetail](UserId, FirstName, LastName, DateOfBirth, Prim
 UPDATE [Config].[UserCredential] SET UserDetailId = SCOPE_IDENTITY() WHERE UserName = 'k.h.rajeeb@gmail.com';
 INSERT INTO [Config].[UserCredential] (UserName, Password) VALUES('rajeeb1000@gmail.com', 'pass3');
 
-INSERT INTO [Config].[VehicleDetail] (VehicleType, Manufacturer, Model, Year, RegistrationState, RegistrationNumber, RegistrationExpiry, TotalSeats) VALUES('A/C','Volvo','VR-200',2018,'Dhaka Metro','KA 2345','10/10/2023',42);
-INSERT INTO [Config].[VehicleDetail] (VehicleType, Manufacturer, Model, Year, RegistrationState, RegistrationNumber, RegistrationExpiry, TotalSeats) VALUES('Standard','Toyota','B-1100',2014,'Dhaka Metro','KA 1166','5/11/2020',36);
+INSERT INTO [Config].[Vehicle] (VehicleType, Manufacturer, Model, Year, RegistrationState, RegistrationNumber, RegistrationExpiry, TotalSeats) VALUES('A/C','Volvo','VR-200',2018,'Dhaka Metro','KA 2345','10/10/2023',42);
+INSERT INTO [Config].[Vehicle] (VehicleType, Manufacturer, Model, Year, RegistrationState, RegistrationNumber, RegistrationExpiry, TotalSeats) VALUES('Standard','Toyota','B-1100',2014,'Dhaka Metro','KA 1166','5/11/2020',36);
 
 INSERT INTO [Config].[Destination] (City, State, PostCode) VALUES('Dhaka', 'Dhaka', 1000);
 INSERT INTO [Config].[BookingOffice] (DestinationId, AddressLine1, Area, Email, PrimaryContact) VALUES(SCOPE_IDENTITY(), '151 Mirpur Road', 'Kalyanpur', 'kalyanpur@vrs.com.bd', '01711665877'); 
 INSERT INTO [Config].[Destination] (City, State, PostCode) VALUES('Rajshahi', 'Rajshahi', 6000);
 INSERT INTO [Config].[BookingOffice] (DestinationId, AddressLine1, Area, Email, PrimaryContact) VALUES(SCOPE_IDENTITY(), '2/109 Shaheb Bazar Road', 'Rajshahi Sadar', 'rajshahi.sadar@vrs.com.bd', '01711665878'); 
 INSERT INTO [Config].[Destination] (City, State, PostCode) VALUES('Chittagong', 'Chittagong', 4000);
+
+DECLARE @FromDestinationId BIGINT;
+DECLARE @ToDestinationId BIGINT;
+SELECT @FromDestinationId = Id FROM [Config].[Destination] WHERE City = 'Dhaka';
+SELECT @ToDestinationId = Id FROM [Config].[Destination] WHERE City = 'Rajshahi';
+
+INSERT INTO [Config].[Operator] (Name, AddressLine1, AddressCity, AddressState, AddressPostCode, AddressCountry, PrimaryContact, PrimaryEmail) VALUES('Greyhound', 'Ann St', 'Brisbane', 'QLD', '4000', 'Australia', '07 1122 3344', 'greyhound@email.com');
+INSERT INTO [Config].[RouteSchedule] (OperatorId, FromDestinationId, ToDestinationId, Day, Time) VALUES(SCOPE_IDENTITY(), @FromDestinationId, @ToDestinationId, 'Friday', '10:30:00');

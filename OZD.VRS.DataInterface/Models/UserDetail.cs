@@ -179,15 +179,5 @@ namespace OZD.VRS.DataInterface.Models
         public virtual UserCredential UserCredential { get; set; }
 
         #endregion
-
-        #region Non-mapped Properties
-
-        /// <summary>
-        /// Gets the name of the user.
-        /// </summary>
-        /// <value>The name of the user.</value>
-        public string UserName => this.UserCredential?.UserName;
-
-        #endregion
     }
 }

@@ -71,17 +71,20 @@
     <PostDeploy Include="Scripts\Test Data.sql" />
     <Build Include="Config\Tables\UserCredential.sql" />
     <Build Include="Config\Tables\UserDetail.sql" />
-    <Build Include="Config\Constraints\UK_VehicleDetail_Registration.sql" />
+    <Build Include="Config\Constraints\UK_Vehicle_Registration.sql" />
     <Build Include="Config\Tables\Vehicle.sql" />
     <Build Include="Config\Constraints\CHK_UserDetail_PostalAddress.sql" />
     <Build Include="Config\Constraints\FK_UserCredential_UserDetailId.sql" />
     <Build Include="Config\Constraints\FK_UserDetail_UserId.sql" />
     <Build Include="Config\Constraints\UK_UserCredential_UserName.sql" />
     <Build Include="Config\Config.sql" />
-    <Build Include="Config\Constraints\FK_Route_FromDestinationId.sql" />
-    <Build Include="Config\Constraints\FK_Route_ToDestinationId.sql" />
-    <Build Include="Config\Tables\Route.sql" />
+    <Build Include="Config\Constraints\FK_RouteSchedule_FromDestinationId.sql" />
+    <Build Include="Config\Constraints\FK_RouteSchedule_ToDestinationId.sql" />
     <Build Include="Config\Tables\RouteSchedule.sql" />
+    <Build Include="Config\Tables\Operator.sql" />
+    <Build Include="Config\Constraints\FK_RouteSchedule_OperatorId.sql" />
+    <Build Include="Config\Constraints\UK_RouteSchedule_Composite.sql" />
+    <Build Include="Config\Constraints\CHK_RouteSchedule_SameDestinations.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VRS.refactorlog" />

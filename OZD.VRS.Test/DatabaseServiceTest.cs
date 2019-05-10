@@ -124,15 +124,15 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var destination1 = new Destination { City = "Dhaka", State = "Dhaka", PostCode = 1000 };
+            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
             destination1 = databaseService.CreateDestination(destination1);
-            var destination2 = new Destination { City = "Rajshahi", State = "Rajshahi", PostCode = 6000 };
+            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
             destination2 = databaseService.CreateDestination(destination2);
 
             destination1 = databaseService.GetDestination(destination1.Id);
-            Assert.AreEqual(destination1.State, "Dhaka");
+            Assert.AreEqual(destination1.State, "Test Location 1");
             destination2 = databaseService.GetDestination(destination2.Id);
-            Assert.AreEqual(destination2.City, "Rajshahi");
+            Assert.AreEqual(destination2.City, "Test Location 2");
             Assert.AreEqual(destination2.PostCode, 6000);
 
             destination2.PostCode = 6001;
@@ -149,32 +149,70 @@ namespace OZD.VRS.Test
             Assert.AreEqual(databaseService.GetDestination(destination2.Id), null);
         }
 
+        /// <summary>
+        /// Tests the routes.
+        /// </summary>
         [TestMethod]
-        public void TestRoutes()
+        public void TestRouteSchedules()
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var destination1 = new Destination { City = "Dhaka", State = "Dhaka", PostCode = 1000 };
+            var fleetOperator = new Operator { Name = "Test Operator", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com" };
+            fleetOperator = databaseService.CreateOperator(fleetOperator);
+            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
             destination1 = databaseService.CreateDestination(destination1);
-            var destination2 = new Destination { City = "Rajshahi", State = "Rajshahi", PostCode = 6000 };
+            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
             destination2 = databaseService.CreateDestination(destination2);
 
-            var routes = databaseService.CreateRoute(destination1.Id, destination2.Id);
-            Assert.AreEqual(routes.Count, 2);
-            Assert.AreEqual(routes.First().FromDestinationId, routes.Last().ToDestinationId);
-            Assert.AreEqual(routes.First().ToDestinationId, routes.Last().FromDestinationId);
+            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = "Monday", Time = new TimeSpan(9, 0, 0) };
+            routeSchedule = databaseService.CreateRouteSchedule(routeSchedule);
 
-            var destinationsBySource = databaseService.GetDestinationsBySource(destination1.Id);
-            Assert.AreEqual(destinationsBySource.Count, 1);
-            Assert.AreEqual(destinationsBySource.First().Id, destination2.Id);
+            routeSchedule = databaseService.GetRouteSchedule(routeSchedule.Id);
+            Assert.AreEqual(routeSchedule.From?.City, "Test Location 1");
+            Assert.AreEqual(routeSchedule.To?.City, "Test Location 2");
+            Assert.AreEqual(routeSchedule.Time, new TimeSpan(9, 0, 0));
 
-            databaseService.DeleteRoute(routes.First());
-            Assert.AreEqual(databaseService.GetRoute(routes.Last().Id), null);
+            routeSchedule.Day = "Friday";
+            routeSchedule.Time = new TimeSpan(11, 0, 0);
+            routeSchedule = databaseService.UpdateRouteSchedule(routeSchedule);
 
-            databaseService.DeleteDestination(destination1.Id);
-            databaseService.DeleteDestination(destination2.Id);
-            Assert.AreEqual(databaseService.GetDestination(destination1.Id), null);
-            Assert.AreEqual(databaseService.GetDestination(destination2.Id), null);
+            routeSchedule = databaseService.GetRouteSchedule(routeSchedule.Id);
+            Assert.AreEqual(routeSchedule.Day, "Friday");
+            Assert.AreEqual(routeSchedule.Time, new TimeSpan(11, 0, 0));
+
+            databaseService.DeleteRouteSchedule(routeSchedule.Id);
+            Assert.AreEqual(databaseService.GetRouteSchedule(routeSchedule.Id), null);
+        }
+
+        /// <summary>
+        /// Tests the operators.
+        /// </summary>
+        [TestMethod]
+        public void TestOperators()
+        {
+            var databaseService = this.container.Resolve<IDatabaseService>();
+
+            var fleetOperator = new Operator { Name = "Greyhound", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com" };
+            fleetOperator = databaseService.CreateOperator(fleetOperator);
+
+            fleetOperator = databaseService.GetOperator(fleetOperator.Id);
+            Assert.IsTrue(fleetOperator != null);
+            Assert.AreEqual(fleetOperator.Name, "Greyhound");
+            Assert.AreEqual(fleetOperator.AddressPostCode, "4110");
+            Assert.AreEqual(fleetOperator.PrimaryEmail, "operator1@email.com");
+
+            fleetOperator.AddressCity = "Forest Lake";
+            fleetOperator.PrimaryContact = "0433567223";
+            databaseService.UpdateOperator(fleetOperator);
+
+            fleetOperator = databaseService.GetOperator(fleetOperator.Id);
+            Assert.AreEqual(fleetOperator.AddressCity, "Forest Lake");
+            Assert.AreEqual(fleetOperator.PrimaryContact, "0433567223");
+            Assert.AreEqual(fleetOperator.AddressLine1, "58 Portree Cres");
+
+            databaseService.DeleteOperator(fleetOperator.Id);
+            fleetOperator = databaseService.GetOperator(fleetOperator.Id);
+            Assert.AreEqual(fleetOperator, null);
         }
     }
 }
