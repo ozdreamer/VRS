@@ -38,7 +38,7 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// </summary>
         /// <value>The day.</value>
         [Required]
-        public string Day { get; set; }
+        public DayOfWeek Day { get; set; }
 
         /// <summary>
         /// Gets or sets the time.

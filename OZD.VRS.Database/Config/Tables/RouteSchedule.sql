@@ -4,6 +4,6 @@
 	[OperatorId] BIGINT NOT NULL,
 	[FromDestinationId] BIGINT NOT NULL,
 	[ToDestinationId] BIGINT NOT NULL,
-	[Day] NVARCHAR(16) NOT NULL,
+	[Day] INT NOT NULL,
 	[Time] TIME NOT NULL
 )

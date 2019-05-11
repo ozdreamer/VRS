@@ -430,5 +430,60 @@ namespace OZD.VRS.Service
         }
 
         #endregion
+        
+        #region Vehicle
+
+        /// <summary>
+        /// Gets the vehicle.
+        /// </summary>
+        /// <param name="vehicleScheduleId">The vehicle schedule identifier.</param>
+        /// <returns>The vehicle vehicle schedule.</returns>
+        public VehicleSchedule GetVehicleSchedule(long vehicleScheduleId) => this.context.VehicleSchedules.FirstOrDefault(x => x.Id == vehicleScheduleId);
+
+        /// <summary>
+        /// Creates the vehicle schedule.
+        /// </summary>
+        /// <param name="vehicleSchedule">The vehicle schedule.</param>
+        /// <returns>The vehicle schedule.</returns>
+        public VehicleSchedule CreateVehicleSchedule(VehicleSchedule vehicleSchedule)
+        {
+            this.context.VehicleSchedules.Add(vehicleSchedule);
+            this.context.SaveChanges();
+            return vehicleSchedule;
+        }
+
+        /// <summary>
+        /// Updates the vehicle schedule.
+        /// </summary>
+        /// <param name="vehicleSchedule">The vehicle schedule.</param>
+        /// <returns>The updated vehicle schedule.</returns>
+        public VehicleSchedule UpdateVehicleSchedule(VehicleSchedule vehicleSchedule)
+        {
+            var existingRoadSchedule = this.GetVehicleSchedule(vehicleSchedule.Id);
+            if (existingRoadSchedule != null)
+            {
+                DataModelUpdater.UpdateVehicleSchedule(vehicleSchedule, ref existingRoadSchedule);
+                this.context.Update(existingRoadSchedule);
+                this.context.SaveChanges();
+            }
+
+            return existingRoadSchedule;
+        }
+
+        /// <summary>
+        /// Deletes the vehicle schedule.
+        /// </summary>
+        /// <param name="vehicleScheduleId">The vehicle schedule identifier.</param>
+        public void DeleteVehicleSchedule(long vehicleScheduleId)
+        {
+            var existingVehicle = this.context.VehicleSchedules.FirstOrDefault(x => x.Id == vehicleScheduleId);
+            if (existingVehicle != null)
+            {
+                this.context.Remove(existingVehicle);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
     }
 }

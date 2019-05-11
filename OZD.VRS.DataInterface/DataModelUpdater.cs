@@ -128,5 +128,17 @@ namespace OZD.VRS.DataInterface
             to.SecondaryContact = from.SecondaryContact;
             to.PrimaryEmail = from.PrimaryEmail;
         }
+
+        /// <summary>
+        /// Updates the vehicle schedule.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateVehicleSchedule(VehicleSchedule from, ref VehicleSchedule to)
+        {
+            to.RouteScheduleId = from.RouteScheduleId;
+            to.VehicleId = from.VehicleId;
+            to.Date = from.Date;
+        }
     }
 }

@@ -88,6 +88,10 @@
     <Build Include="User\Constraints\UK_UserCredential_UserName.sql" />
     <Build Include="User\User.sql" />
     <Build Include="Config\Constraints\UK_RouteSchedule_Composite.sql" />
+    <Build Include="Config\Tables\VehicleSchedule.sql" />
+    <Build Include="Config\Constraints\FK_VehicleSchedule_OperatorId.sql" />
+    <Build Include="Config\Constraints\FK_VehicleSchedule_RouteScheduleId.sql" />
+    <Build Include="Config\Constraints\FK_VehicleSchedule_VehicleId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VRS.refactorlog" />

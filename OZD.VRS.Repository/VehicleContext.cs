@@ -150,5 +150,11 @@ namespace OZD.VRS.Repository
         /// </summary>
         /// <value>The operators.</value>
         public DbSet<Operator> Operators { get; set; }
+
+        /// <summary>
+        /// Gets or sets the vehicle schedules.
+        /// </summary>
+        /// <value>The vehicle schedules.</value>
+        public DbSet<VehicleSchedule> VehicleSchedules { get; set; }
     }
 }

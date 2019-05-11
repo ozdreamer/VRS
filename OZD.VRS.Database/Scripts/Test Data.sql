@@ -33,4 +33,4 @@ SELECT @FromDestinationId = Id FROM [Admin].[Destination] WHERE City = 'Dhaka';
 SELECT @ToDestinationId = Id FROM [Admin].[Destination] WHERE City = 'Rajshahi';
 
 INSERT INTO [Admin].[Operator] (Name, AddressLine1, AddressCity, AddressState, AddressPostCode, AddressCountry, PrimaryContact, PrimaryEmail) VALUES('Greyhound', 'Ann St', 'Brisbane', 'QLD', '4000', 'Australia', '07 1122 3344', 'greyhound@email.com');
-INSERT INTO [Admin].[RouteSchedule] (OperatorId, FromDestinationId, ToDestinationId, Day, Time) VALUES(SCOPE_IDENTITY(), @FromDestinationId, @ToDestinationId, 'Friday', '10:30:00');
+INSERT INTO [Admin].[RouteSchedule] (OperatorId, FromDestinationId, ToDestinationId, Day, Time) VALUES(SCOPE_IDENTITY(), @FromDestinationId, @ToDestinationId, 1, '10:30:00');

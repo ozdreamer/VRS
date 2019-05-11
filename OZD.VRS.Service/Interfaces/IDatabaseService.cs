@@ -234,5 +234,36 @@ namespace OZD.VRS.Service.Interfaces
         void DeleteOperator(long operatorId);
 
         #endregion
+
+        #region Vehicle
+
+        /// <summary>
+        /// Gets the vehicle.
+        /// </summary>
+        /// <param name="vehicleId">The vehicle identifier.</param>
+        /// <returns>The vehicle vehicle.</returns>
+        VehicleSchedule GetVehicleSchedule(long vehicleScheduleId);
+
+        /// <summary>
+        /// Creates the vehicle schedule.
+        /// </summary>
+        /// <param name="vehicleSchedule">The vehicle schedule.</param>
+        /// <returns>The vehicle schedule.</returns>
+        VehicleSchedule CreateVehicleSchedule(VehicleSchedule vehicleSchedule);
+
+        /// <summary>
+        /// Updates the vehicle schedule.
+        /// </summary>
+        /// <param name="vehicleSchedule">The vehicle schedule.</param>
+        /// <returns>The updated vehicle schedule.</returns>
+        VehicleSchedule UpdateVehicleSchedule(VehicleSchedule vehicleSchedule);
+
+        /// <summary>
+        /// Deletes the vehicle.
+        /// </summary>
+        /// <param name="vehicle">The vehicle.</param>
+        void DeleteVehicleSchedule(long vehicleScheduleId);
+
+        #endregion
     }
 }
