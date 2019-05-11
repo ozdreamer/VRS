@@ -132,24 +132,70 @@ namespace OZD.VRS.Test
             var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
             destination2 = databaseService.CreateDestination(destination2);
 
-            destination1 = databaseService.GetDestination(destination1.Id);
-            Assert.AreEqual(destination1.State, "Test Location 1");
-            destination2 = databaseService.GetDestination(destination2.Id);
-            Assert.AreEqual(destination2.City, "Test Location 2");
-            Assert.AreEqual(destination2.PostCode, 6000);
+            var newDestination1 = databaseService.GetDestination(destination1.Id);
+            Assert.AreEqual(newDestination1.State, destination1.State);
 
-            destination2.PostCode = 6001;
-            destination2.City = "Shalbagan";
-            databaseService.UpdateDestination(destination1);
+            var newDestination2 = databaseService.GetDestination(destination2.Id);
+            Assert.AreEqual(newDestination2.City, destination2.City);
+            Assert.AreEqual(newDestination2.PostCode, destination2.PostCode);
 
-            destination2 = databaseService.GetDestination(destination2.Id);
-            Assert.AreEqual(destination2.PostCode, 6001);
-            Assert.AreEqual(destination2.City, "Shalbagan");
+            newDestination1.PostCode = 6001;
+            newDestination1.City = "Shalbagan";
+            newDestination1 = databaseService.UpdateDestination(newDestination1);
+
+            var updatedDestination1 = databaseService.GetDestination(newDestination1.Id);
+            Assert.AreEqual(updatedDestination1.PostCode, newDestination1.PostCode);
+            Assert.AreEqual(updatedDestination1.City, newDestination1.City);
 
             databaseService.DeleteDestination(destination1.Id);
             databaseService.DeleteDestination(destination2.Id);
             Assert.AreEqual(databaseService.GetDestination(destination1.Id), null);
+            Assert.AreEqual(databaseService.GetDestination(newDestination1.Id), null);
+            Assert.AreEqual(databaseService.GetDestination(updatedDestination1.Id), null);
             Assert.AreEqual(databaseService.GetDestination(destination2.Id), null);
+        }
+
+        /// <summary>
+        /// Tests the booking offices.
+        /// </summary>
+        [TestMethod]
+        public void TestBookingOffices()
+        {
+            var databaseService = this.container.Resolve<IDatabaseService>();
+
+            var destination = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
+            destination = databaseService.CreateDestination(destination);
+
+            var bookingOffice1 = new BookingOffice { AddressLine1 = "100 Magbazar Road", Area = "Magbazar", DestinationId = destination.Id, Email = "test.magbazar@email.com", PrimaryContact = "01711665223" };
+            bookingOffice1 = databaseService.CreateBookingOffice(bookingOffice1);
+            var bookingOffice2 = new BookingOffice { AddressLine1 = "5 Mirpur Road", Area = "Mirpur 1", DestinationId = destination.Id, Email = "test.mirpur1@email.com", PrimaryContact = "01711335223" };
+            bookingOffice2 = databaseService.CreateBookingOffice(bookingOffice2);
+
+            var newBookingOffice1 = databaseService.GetBookingOffice(bookingOffice1.Id);
+            Assert.IsTrue(newBookingOffice1 != null);
+            Assert.AreEqual(newBookingOffice1.AddressLine1, bookingOffice1.AddressLine1);
+            Assert.AreEqual(newBookingOffice1.Area, bookingOffice1.Area);
+            Assert.AreEqual(newBookingOffice1.SecondaryContact, null);
+
+            newBookingOffice1.Email = "test2.magbazar@email.com";
+            newBookingOffice1.PrimaryContact = "0178822334";
+            newBookingOffice1.SecondaryContact = "0165515521";
+            databaseService.UpdateBookingOffice(newBookingOffice1);
+
+            var updatedBookingOffice1 = databaseService.GetBookingOffice(newBookingOffice1.Id);
+            Assert.IsTrue(updatedBookingOffice1 != null);
+            Assert.AreEqual(updatedBookingOffice1.Email, newBookingOffice1.Email);
+            Assert.AreEqual(updatedBookingOffice1.PrimaryContact, newBookingOffice1.PrimaryContact);
+            Assert.AreEqual(updatedBookingOffice1.SecondaryContact, newBookingOffice1.SecondaryContact);
+
+            databaseService.DeleteBookingOffice(bookingOffice1.Id);
+            databaseService.DeleteBookingOffice(bookingOffice2.Id);
+            Assert.AreEqual(databaseService.GetBookingOffice(bookingOffice1.Id), null);
+            Assert.AreEqual(databaseService.GetBookingOffice(newBookingOffice1.Id), null);
+            Assert.AreEqual(databaseService.GetBookingOffice(updatedBookingOffice1.Id), null);
+            Assert.AreEqual(databaseService.GetBookingOffice(bookingOffice2.Id), null);
+
+            databaseService.DeleteDestination(destination.Id);
         }
 
         /// <summary>
@@ -185,6 +231,10 @@ namespace OZD.VRS.Test
 
             databaseService.DeleteRouteSchedule(routeSchedule.Id);
             Assert.AreEqual(databaseService.GetRouteSchedule(routeSchedule.Id), null);
+
+            databaseService.DeleteDestination(destination1.Id);
+            databaseService.DeleteDestination(destination2.Id);
+            databaseService.DeleteOperator(fleetOperator.Id);
         }
 
         /// <summary>
