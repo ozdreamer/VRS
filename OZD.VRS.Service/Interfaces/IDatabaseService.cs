@@ -64,6 +64,37 @@ namespace OZD.VRS.Service.Interfaces
 
         #endregion
 
+        #region Seat Layout
+
+        /// <summary>
+        /// Gets the seat layout.
+        /// </summary>
+        /// <param name="seatLayoutId">The seat layout identifier.</param>
+        /// <returns>The seat layout.</returns>
+        SeatLayout GetSeatLayout(long seatLayoutId);
+
+        /// <summary>
+        /// Creates the seat layout.
+        /// </summary>
+        /// <param name="seatLayout">The seat layout.</param>
+        /// <returns>The seat layout.</returns>
+        SeatLayout CreateSeatLayout(SeatLayout seatLayout);
+
+        /// <summary>
+        /// Updates the seat layout.
+        /// </summary>
+        /// <param name="seatLayout">The seat layout.</param>
+        /// <returns>The updated seat layout.</returns>
+        SeatLayout UpdateSeatLayout(SeatLayout seatLayout);
+
+        /// <summary>
+        /// Deletes the seat layout.
+        /// </summary>
+        /// <param name="seatLayoutId">The seat layout identifier.</param>
+        void DeleteSeatLayout(long seatLayoutId);
+
+        #endregion
+
         #region Vehicle
 
         /// <summary>
@@ -235,7 +266,7 @@ namespace OZD.VRS.Service.Interfaces
 
         #endregion
 
-        #region Vehicle
+        #region Vehicle Schedule
 
         /// <summary>
         /// Gets the vehicle.

@@ -47,6 +47,15 @@ namespace OZD.VRS.DataInterface.Models.Admin
         [Required]
         public TimeSpan Time { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="BookingOffice"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
         #endregion
 
         #region Linked Properties

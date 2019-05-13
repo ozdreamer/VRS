@@ -16,6 +16,7 @@ namespace OZD.VRS.DataInterface
         public static void UpdateUserCredentials(UserCredential from, ref UserCredential to)
         {
             to.Password = from.Password;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -50,12 +51,26 @@ namespace OZD.VRS.DataInterface
         }
 
         /// <summary>
+        /// Updates the seat layout.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateSeatLayout(SeatLayout from, ref SeatLayout to)
+        {
+            to.Rows = from.Rows;
+            to.Columns = from.Columns;
+            to.Layout = from.Layout;
+            to.Active = from.Active;
+        }
+
+        /// <summary>
         /// Updates the vehicle.
         /// </summary>
         /// <param name="from">From.</param>
         /// <param name="to">To.</param>
         public static void UpdateVehicle(Vehicle from, ref Vehicle to)
         {
+            to.SeatLayoutId = from.SeatLayoutId;
             to.VIN = from.VIN;
             to.VehicleType = from.VehicleType;
             to.Manufacturer = from.Manufacturer;
@@ -67,6 +82,7 @@ namespace OZD.VRS.DataInterface
             to.TotalSeats = from.TotalSeats;
             to.DriveType = from.DriveType;
             to.BaseStation = from.BaseStation;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -79,6 +95,7 @@ namespace OZD.VRS.DataInterface
             to.City = from.City;
             to.State = from.State;
             to.PostCode = from.PostCode;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -94,6 +111,7 @@ namespace OZD.VRS.DataInterface
             to.Email = from.Email;
             to.PrimaryContact = from.PrimaryContact;
             to.SecondaryContact = from.SecondaryContact;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -107,6 +125,7 @@ namespace OZD.VRS.DataInterface
             to.ToDestinationId = from.ToDestinationId;
             to.Day = from.Day;
             to.Time = from.Time;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -127,6 +146,7 @@ namespace OZD.VRS.DataInterface
             to.PrimaryContact = from.PrimaryContact;
             to.SecondaryContact = from.SecondaryContact;
             to.PrimaryEmail = from.PrimaryEmail;
+            to.Active = from.Active;
         }
 
         /// <summary>
@@ -139,6 +159,7 @@ namespace OZD.VRS.DataInterface
             to.RouteScheduleId = from.RouteScheduleId;
             to.VehicleId = from.VehicleId;
             to.Date = from.Date;
+            to.Active = from.Active;
         }
     }
 }

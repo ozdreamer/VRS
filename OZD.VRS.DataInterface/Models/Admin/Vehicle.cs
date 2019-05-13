@@ -1,12 +1,22 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace OZD.VRS.DataInterface.Models.Admin
 {
     [Table("Vehicle", Schema = "Admin")]
     public class Vehicle : BaseDto
     {
+        #region Mapped Properties
+
+        /// <summary>
+        /// Gets or sets the seat layout identifier.
+        /// </summary>
+        /// <value>The seat layout identifier.</value>
+        public long SeatLayoutId { get; set; }
+
         /// <summary>
         /// Gets or sets the vehicle identification number.
         /// </summary>
@@ -78,5 +88,28 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// </summary>
         /// <value>The base station.</value>
         public string BaseStation { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="BookingOffice"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
+        #endregion
+
+        #region Linked Properties
+
+        /// <summary>
+        /// Gets or sets the seat layout.
+        /// </summary>
+        /// <value>The seat layout.</value>
+        [ForeignKey("SeatLayoutId")]
+        [XmlIgnore, JsonIgnore]
+        public virtual SeatLayout SeatLayout { get; set; }
+
+        #endregion
     }
 }

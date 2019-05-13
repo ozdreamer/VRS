@@ -12,6 +12,8 @@ namespace OZD.VRS.DataInterface.Models.User
     [Table("UserCredential", Schema = "User")]
     public class UserCredential : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets the name of the user.
         /// </summary>
@@ -34,11 +36,26 @@ namespace OZD.VRS.DataInterface.Models.User
         public long? UserDetailId { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="SeatLayout"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
+        #endregion
+
+        #region Linked Properties
+
+        /// <summary>
         /// Gets or sets the user details.
         /// </summary>
         /// <value>The user details.</value>
         [ForeignKey("UserDetailId")]
         [XmlIgnore, JsonIgnore]
         public virtual UserDetail UserDetail { get; set; }
+
+        #endregion
     }
 }

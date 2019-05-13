@@ -122,6 +122,12 @@ namespace OZD.VRS.Repository
         public DbSet<UserDetail> UserDetails { get; set; }
 
         /// <summary>
+        /// Gets or sets the seat layouts.
+        /// </summary>
+        /// <value>The seat layouts.</value>
+        public DbSet<SeatLayout> SeatLayouts { get; set; }
+
+        /// <summary>
         /// Gets or sets the vehicle details.
         /// </summary>
         /// <value>The vehicle details.</value>

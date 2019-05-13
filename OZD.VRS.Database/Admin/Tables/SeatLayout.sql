@@ -1,0 +1,8 @@
+﻿CREATE TABLE [Admin].[SeatLayout]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Rows] INT NOT NULL,
+	[Columns] INT NOT NULL,
+	[Layout] NVARCHAR(1024) NULL,
+	[Active] BIT NOT NULL
+)

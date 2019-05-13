@@ -11,5 +11,6 @@
 	[AddressCountry] NVARCHAR(64) NOT NULL,
 	[PrimaryContact] NVARCHAR(128) NOT NULL,
 	[SecondaryContact] NVARCHAR(128),
-	[PrimaryEmail] NVARCHAR(128) NOT NULL
+	[PrimaryEmail] NVARCHAR(128) NOT NULL,
+	[Active] BIT NOT NULL
 )

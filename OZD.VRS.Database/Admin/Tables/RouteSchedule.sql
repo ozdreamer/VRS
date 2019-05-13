@@ -5,5 +5,6 @@
 	[FromDestinationId] BIGINT NOT NULL,
 	[ToDestinationId] BIGINT NOT NULL,
 	[Day] INT NOT NULL,
-	[Time] TIME NOT NULL
+	[Time] TIME NOT NULL,
+	[Active] BIT NOT NULL
 )

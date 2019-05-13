@@ -6,6 +6,8 @@ namespace OZD.VRS.DataInterface.Models.Admin
     [Table("Operator", Schema = "Admin")]
     public class Operator : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -79,5 +81,16 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// <value>The primary email.</value>
         [Required]
         public string PrimaryEmail { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="BookingOffice"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
+        #endregion
     }
 }

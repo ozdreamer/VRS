@@ -8,4 +8,5 @@
     [Email] NVARCHAR(128) NOT NULL, 
     [PrimaryContact] NVARCHAR(128) NOT NULL,
 	[SecondaryContact] NVARCHAR(128),	
+	[Active] BIT NOT NULL
 )

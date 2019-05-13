@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [User].[UserCredential]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+    [UserDetailId] BIGINT NULL,
 	[UserName] NVARCHAR(255) NOT NULL,
 	[Password] NVARCHAR(255) NOT NULL, 
-    [UserDetailId] BIGINT NULL
+	[Active] BIT NOT NULL
 );

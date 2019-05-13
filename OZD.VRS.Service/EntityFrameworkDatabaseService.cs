@@ -140,6 +140,61 @@ namespace OZD.VRS.Service
 
         #endregion
 
+        #region Seat Layout
+
+        /// <summary>
+        /// Gets the seat layout.
+        /// </summary>
+        /// <param name="seatLayoutId">The seat layout identifier.</param>
+        /// <returns>The seat layout.</returns>
+        public SeatLayout GetSeatLayout(long seatLayoutId) => this.context.SeatLayouts.FirstOrDefault(x => x.Id == seatLayoutId);
+
+        /// <summary>
+        /// Creates the seat layout.
+        /// </summary>
+        /// <param name="seatLayout">The seat layout.</param>
+        /// <returns>The seat layout.</returns>
+        public SeatLayout CreateSeatLayout(SeatLayout seatLayout)
+        {
+            this.context.Add(seatLayout);
+            this.context.SaveChanges();
+            return seatLayout;
+        }
+
+        /// <summary>
+        /// Updates the seat layout.
+        /// </summary>
+        /// <param name="seatLayout">The seat layout.</param>
+        /// <returns>The updated seat layout.</returns>
+        public SeatLayout UpdateSeatLayout(SeatLayout seatLayout)
+        {
+            var existingSeatLayout = this.GetSeatLayout(seatLayout.Id);
+            if (existingSeatLayout != null)
+            {
+                DataModelUpdater.UpdateSeatLayout(seatLayout, ref existingSeatLayout);
+                this.context.Update(existingSeatLayout);
+                this.context.SaveChanges();
+            }
+
+            return existingSeatLayout;
+        }
+
+        /// <summary>
+        /// Deletes the seat layout.
+        /// </summary>
+        /// <param name="seatLayoutId">The seat layout identifier.</param>
+        public void DeleteSeatLayout(long seatLayoutId)
+        {
+            var existingSeatLayout = this.GetSeatLayout(seatLayoutId);
+            if (existingSeatLayout != null)
+            {
+                this.context.Remove(existingSeatLayout);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
         #region Vehicle
 
         /// <summary>

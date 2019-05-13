@@ -10,6 +10,8 @@ namespace OZD.VRS.DataInterface.Models.Admin
     [Table("Destination", Schema = "Admin")]
     public class Destination : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets the city.
         /// </summary>
@@ -28,5 +30,16 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// </summary>
         /// <value>The post code.</value>
         public int PostCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="BookingOffice"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
+        #endregion
     }
 }

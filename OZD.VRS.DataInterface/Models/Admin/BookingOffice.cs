@@ -13,6 +13,8 @@ namespace OZD.VRS.DataInterface.Models.Admin
     [Table("BookingOffice", Schema = "Admin")]
     public class BookingOffice : BaseDto
     {
+        #region Mapped Properties
+
         /// <summary>
         /// Gets or sets the destination identifier.
         /// </summary>
@@ -61,11 +63,26 @@ namespace OZD.VRS.DataInterface.Models.Admin
         public string SecondaryContact { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="BookingOffice"/> is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if active; otherwise, <c>false</c>.
+        /// </value>
+        [Required]
+        public bool Active { get; set; }
+
+        #endregion
+
+        #region Linked Properties
+
+        /// <summary>
         /// Gets or sets the destination.
         /// </summary>
         /// <value>The destination.</value>
         [XmlIgnore, JsonIgnore]
         [ForeignKey("DestinationId")]
         public virtual Destination Destination { get; set; }
+
+        #endregion
     }
 }

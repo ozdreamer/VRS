@@ -1,0 +1,14 @@
+﻿CREATE TABLE [User].[Booking]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[VehicleId] BIGINT NOT NULL,
+	[UserId] BIGINT NOT NULL,
+	[OperatorId] BIGINT NOT NULL,
+	[PaymentId] BIGINT NULL,
+	[Date] DATE NOT NULL,
+	[Time] TIME NOT NULL,
+	[Seat] NVARCHAR(4) NULL,
+	[BookingDate] DATE NULL,
+	[CancellationDate] DATE NULL,
+	[Status] NVARCHAR(16) NOT NULL
+)

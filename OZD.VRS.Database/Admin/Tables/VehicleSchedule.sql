@@ -4,5 +4,6 @@
 	[OperatorId] BIGINT NOT NULL,
 	[RouteScheduleId] BIGINT NOT NULL,
 	[VehicleId] BIGINT NOT NULL,
-	[Date] DATE NOT NULL
+	[Date] DATE NOT NULL,
+	[Active] BIT NOT NULL
 )

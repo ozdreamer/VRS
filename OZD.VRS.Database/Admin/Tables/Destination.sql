@@ -4,4 +4,5 @@
     [City] NVARCHAR(128) NOT NULL, 
     [State] NVARCHAR(128) NULL, 
     [PostCode] INT NULL,	
+	[Active] BIT NOT NULL
 )

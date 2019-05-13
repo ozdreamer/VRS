@@ -62,9 +62,9 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var user1 = new UserCredential { UserName = "email01@test.com", Password = "pass1" };
+            var user1 = new UserCredential { UserName = "email01@test.com", Password = "pass1", Active = true };
             user1 = databaseService.CreateUserCredential(user1);
-            var user2 = new UserCredential { UserName = "email02@test.com", Password = "pass2" };
+            var user2 = new UserCredential { UserName = "email02@test.com", Password = "pass2", Active = true };
             user2 = databaseService.CreateUserCredential(user2);
 
             var newUser1 = databaseService.GetUserCredential(user1.UserName);
@@ -96,7 +96,7 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var user = new UserCredential { UserName = "email01@test.com", Password = "pass1" };
+            var user = new UserCredential { UserName = "email01@test.com", Password = "pass1", Active = true };
             databaseService.CreateUserCredential(user);
             var userDetail = new UserDetail { FirstName = "Test", LastName = "Name", DateOfBirth = new DateTime(1980, 11, 9), AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", UseAddressAsPostal = true };
             databaseService.CreateUserDetail("email01@test.com", userDetail);
@@ -127,9 +127,9 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
+            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000, Active = true };
             destination1 = databaseService.CreateDestination(destination1);
-            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
+            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000, Active = true };
             destination2 = databaseService.CreateDestination(destination2);
 
             var newDestination1 = databaseService.GetDestination(destination1.Id);
@@ -163,12 +163,12 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var destination = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
+            var destination = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000, Active = true };
             destination = databaseService.CreateDestination(destination);
 
-            var bookingOffice1 = new BookingOffice { AddressLine1 = "100 Magbazar Road", Area = "Magbazar", DestinationId = destination.Id, Email = "test.magbazar@email.com", PrimaryContact = "01711665223" };
+            var bookingOffice1 = new BookingOffice { AddressLine1 = "100 Magbazar Road", Area = "Magbazar", DestinationId = destination.Id, Email = "test.magbazar@email.com", PrimaryContact = "01711665223", Active = true };
             bookingOffice1 = databaseService.CreateBookingOffice(bookingOffice1);
-            var bookingOffice2 = new BookingOffice { AddressLine1 = "5 Mirpur Road", Area = "Mirpur 1", DestinationId = destination.Id, Email = "test.mirpur1@email.com", PrimaryContact = "01711335223" };
+            var bookingOffice2 = new BookingOffice { AddressLine1 = "5 Mirpur Road", Area = "Mirpur 1", DestinationId = destination.Id, Email = "test.mirpur1@email.com", PrimaryContact = "01711335223", Active = true };
             bookingOffice2 = databaseService.CreateBookingOffice(bookingOffice2);
 
             var newBookingOffice1 = databaseService.GetBookingOffice(bookingOffice1.Id);
@@ -206,14 +206,14 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var fleetOperator = new Operator { Name = "Test Operator", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com" };
+            var fleetOperator = new Operator { Name = "Test Operator", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com", Active = true };
             fleetOperator = databaseService.CreateOperator(fleetOperator);
-            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
+            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000, Active = true };
             destination1 = databaseService.CreateDestination(destination1);
-            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
+            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000, Active = true };
             destination2 = databaseService.CreateDestination(destination2);
 
-            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0) };
+            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
             routeSchedule = databaseService.CreateRouteSchedule(routeSchedule);
 
             routeSchedule = databaseService.GetRouteSchedule(routeSchedule.Id);
@@ -245,7 +245,7 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var fleetOperator = new Operator { Name = "Greyhound", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com" };
+            var fleetOperator = new Operator { Name = "Greyhound", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com", Active = true };
             fleetOperator = databaseService.CreateOperator(fleetOperator);
 
             var newFleetOperator = databaseService.GetOperator(fleetOperator.Id);
@@ -270,6 +270,42 @@ namespace OZD.VRS.Test
         }
 
         /// <summary>
+        /// Tests the seat layouts.
+        /// </summary>
+        [TestMethod]
+        public void TestSeatLayouts()
+        {
+            var databaseService = this.container.Resolve<IDatabaseService>();
+
+            var layout1 = new SeatLayout { Rows = 10, Columns = 4, Layout = "A1:B1;A2:B2;A3,B3:C3,D3", Active = true };
+            layout1 = databaseService.CreateSeatLayout(layout1);
+            var layout2 = new SeatLayout { Rows = 8, Columns = 4, Layout = "A1,B1:C1,C2;", Active = true };
+            layout2 = databaseService.CreateSeatLayout(layout2);
+
+            var newLayout1 = databaseService.GetSeatLayout(layout1.Id);
+            Assert.IsTrue(newLayout1 != null);
+            Assert.AreEqual(newLayout1.Rows, layout1.Rows);
+            Assert.AreEqual(newLayout1.Columns, layout1.Columns);
+
+            newLayout1.Layout = "A1,B1:C1,D1;A2,B2:C2,D2;";
+            newLayout1.Active = false;
+            newLayout1 = databaseService.UpdateSeatLayout(newLayout1);
+
+            var updatedLayout1 = databaseService.GetSeatLayout(newLayout1.Id);
+            Assert.IsTrue(updatedLayout1 != null);
+            Assert.AreEqual(updatedLayout1.Layout, newLayout1.Layout);
+            Assert.AreEqual(updatedLayout1.Active, newLayout1.Active);
+            Assert.AreEqual(updatedLayout1.Rows, newLayout1.Rows);
+
+            databaseService.DeleteSeatLayout(layout1.Id);
+            databaseService.DeleteSeatLayout(layout2.Id);
+            Assert.AreEqual(databaseService.GetSeatLayout(layout1.Id), null);
+            Assert.AreEqual(databaseService.GetSeatLayout(newLayout1.Id), null);
+            Assert.AreEqual(databaseService.GetSeatLayout(updatedLayout1.Id), null);
+            Assert.AreEqual(databaseService.GetSeatLayout(layout2.Id), null);
+        }
+
+        /// <summary>
         /// Tests the vehicles.
         /// </summary>
         [TestMethod]
@@ -277,9 +313,12 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var vehicle1 = new Vehicle { VehicleType = "Premium Volvo", Manufacturer = "Volvo", DriveType = "Automatic", Model = "V2110", RegistrationNumber = "BA 2233", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2021, 9, 12), VIN = "V5263YY83784", Year = 2017, BaseStation = "Dhaka", TotalSeats = 24 };
+            var layout = new SeatLayout { Rows = 10, Columns = 4, Layout = "A1:B1;A2:B2;A3,B3:C3,D3", Active = true };
+            layout = databaseService.CreateSeatLayout(layout);
+
+            var vehicle1 = new Vehicle { SeatLayoutId = layout.Id, VehicleType = "Premium Volvo", Manufacturer = "Volvo", DriveType = "Automatic", Model = "V2110", RegistrationNumber = "BA 2233", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2021, 9, 12), VIN = "V5263YY83784", Year = 2017, BaseStation = "Dhaka", TotalSeats = 24, Active = true };
             vehicle1 = databaseService.CreateVehicle(vehicle1);
-            var vehicle2 = new Vehicle { VehicleType = "Non A/C", Manufacturer = "Tata", DriveType = "Manual", Model = "TT334", RegistrationNumber = "BA 1211", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2022, 8, 12), VIN = "V5263YY86254", Year = 2017, BaseStation = "Dhaka", TotalSeats = 36 };
+            var vehicle2 = new Vehicle { SeatLayoutId = layout.Id, VehicleType = "Non A/C", Manufacturer = "Tata", DriveType = "Manual", Model = "TT334", RegistrationNumber = "BA 1211", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2022, 8, 12), VIN = "V5263YY86254", Year = 2017, BaseStation = "Dhaka", TotalSeats = 36, Active = true };
             vehicle2 = databaseService.CreateVehicle(vehicle2);
 
             var newVehicle1 = databaseService.GetVehicle(vehicle1.Id);
@@ -312,6 +351,8 @@ namespace OZD.VRS.Test
             Assert.AreEqual(databaseService.GetVehicle(newVehicle1.Id), null);
             Assert.AreEqual(databaseService.GetVehicle(updatedVehicle1.Id), null);
             Assert.AreEqual(databaseService.GetVehicle(vehicle2.Id), null);
+
+            databaseService.DeleteSeatLayout(layout.Id);
         }
 
         /// <summary>
@@ -322,21 +363,24 @@ namespace OZD.VRS.Test
         {
             var databaseService = this.container.Resolve<IDatabaseService>();
 
-            var fleetOperator = new Operator { Name = "Greyhound", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com" };
+            var fleetOperator = new Operator { Name = "Greyhound", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com", Active = true };
             fleetOperator = databaseService.CreateOperator(fleetOperator);
 
-            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000 };
+            var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000, Active = true };
             destination1 = databaseService.CreateDestination(destination1);
-            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000 };
+            var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000, Active = true };
             destination2 = databaseService.CreateDestination(destination2);
 
-            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0) };
+            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
             routeSchedule = databaseService.CreateRouteSchedule(routeSchedule);
 
-            var vehicle = new Vehicle { VehicleType = "Premium Volvo", Manufacturer = "Volvo", DriveType = "Automatic", Model = "V2110", RegistrationNumber = "BA 2233", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2021, 9, 12), VIN = "V5263YY83784", Year = 2017, BaseStation = "Dhaka", TotalSeats = 24 };
+            var layout = new SeatLayout { Rows = 10, Columns = 4, Layout = "A1:B1;A2:B2;A3,B3:C3,D3", Active = true };
+            layout = databaseService.CreateSeatLayout(layout);
+
+            var vehicle = new Vehicle { SeatLayoutId = layout.Id, VehicleType = "Premium Volvo", Manufacturer = "Volvo", DriveType = "Automatic", Model = "V2110", RegistrationNumber = "BA 2233", RegistrationState = "Dhaka Metro", RegistrationExpiry = new DateTime(2021, 9, 12), VIN = "V5263YY83784", Year = 2017, BaseStation = "Dhaka", TotalSeats = 24, Active = true };
             vehicle = databaseService.CreateVehicle(vehicle);
 
-            var vehicleSchedule = new VehicleSchedule { OperatorId = fleetOperator.Id, RouteScheduleId = routeSchedule.Id, VehicleId = vehicle.Id, Date = DateTime.Today };
+            var vehicleSchedule = new VehicleSchedule { OperatorId = fleetOperator.Id, RouteScheduleId = routeSchedule.Id, VehicleId = vehicle.Id, Date = DateTime.Today, Active = true };
             vehicleSchedule = databaseService.CreateVehicleSchedule(vehicleSchedule);
 
             var newVehicleSchedule = databaseService.GetVehicleSchedule(vehicleSchedule.Id);
@@ -359,6 +403,7 @@ namespace OZD.VRS.Test
             Assert.AreEqual(databaseService.GetVehicleSchedule(updatedVehicleSchedule.Id), null);
 
             databaseService.DeleteVehicle(vehicle.Id);
+            databaseService.DeleteSeatLayout(layout.Id);
             databaseService.DeleteRouteSchedule(routeSchedule.Id);
             databaseService.DeleteDestination(destination1.Id);
             databaseService.DeleteDestination(destination2.Id);
