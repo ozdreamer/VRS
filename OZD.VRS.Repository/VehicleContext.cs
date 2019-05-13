@@ -128,6 +128,18 @@ namespace OZD.VRS.Repository
         public DbSet<SeatLayout> SeatLayouts { get; set; }
 
         /// <summary>
+        /// Gets or sets the seat classes.
+        /// </summary>
+        /// <value>The seat classes.</value>
+        public DbSet<SeatClass> SeatClasses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the amenities.
+        /// </summary>
+        /// <value>The amenities.</value>
+        public DbSet<Amenity> Amenities { get; set; }
+
+        /// <summary>
         /// Gets or sets the vehicle details.
         /// </summary>
         /// <value>The vehicle details.</value>
@@ -140,10 +152,34 @@ namespace OZD.VRS.Repository
         public DbSet<Destination> Destinations { get; set; }
 
         /// <summary>
+        /// Gets or sets the waypoints.
+        /// </summary>
+        /// <value>The waypoints.</value>
+        public DbSet<Waypoint> Waypoints { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pickup points.
+        /// </summary>
+        /// <value>The pickup points.</value>
+        public DbSet<PickupPoint> PickupPoints { get; set; }
+
+        /// <summary>
+        /// Gets or sets the drop off points.
+        /// </summary>
+        /// <value>The drop off points.</value>
+        public DbSet<DropOffPoint> DropOffPoints { get; set; }
+
+        /// <summary>
         /// Gets or sets the booking office.
         /// </summary>
         /// <value>The booking office.</value>
         public DbSet<BookingOffice> BookingOffices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the routes.
+        /// </summary>
+        /// <value>The routes.</value>
+        public DbSet<Route> Routes { get; set; }
 
         /// <summary>
         /// Gets or sets the route schedules.

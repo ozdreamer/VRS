@@ -24,14 +24,7 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// </summary>
         /// <value>From destination identifier.</value>
         [Required]
-        public long FromDestinationId { get; set; }
-
-        /// <summary>
-        /// Gets or sets to destination identifier.
-        /// </summary>
-        /// <value>To destination identifier.</value>
-        [Required]
-        public long ToDestinationId { get; set; }
+        public long RouteId { get; set; }
 
         /// <summary>
         /// Gets or sets the day.
@@ -69,22 +62,12 @@ namespace OZD.VRS.DataInterface.Models.Admin
         public virtual Operator Operator { get; set; }
 
         /// <summary>
-        /// Gets or sets from destination.
+        /// Gets or sets the route.
         /// </summary>
-        /// <value>From destination.
-        /// </value>
-        [ForeignKey("FromDestinationId")]
+        /// <value>The route.</value>
+        [ForeignKey("RouteId")]
         [XmlIgnore, JsonIgnore]
-        public virtual Destination From { get; set; }
-
-        /// <summary>
-        /// Gets or sets to destination.
-        /// </summary>
-        /// <value>To destination.
-        /// </value>
-        [ForeignKey("ToDestinationId")]
-        [XmlIgnore, JsonIgnore]
-        public virtual Destination To { get; set; }
+        public virtual Route Route { get; set; }
 
         #endregion
 
@@ -96,20 +79,6 @@ namespace OZD.VRS.DataInterface.Models.Admin
         /// <value>The name of the operator.</value>
         [NotMapped]
         public string OperatorName { get; set; }
-
-        /// <summary>
-        /// Gets from destination.
-        /// </summary>
-        /// <value>From destination.</value>
-        [NotMapped]
-        public string FromDestination { get; set; }
-
-        /// <summary>
-        /// Gets or sets to destination.
-        /// </summary>
-        /// <value>To destination.</value>
-        [NotMapped]
-        public string ToDestination { get; set; }
 
         #endregion
     }

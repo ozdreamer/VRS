@@ -31,10 +31,14 @@ INSERT INTO [Admin].[Destination] (City, State, PostCode, Active) VALUES('Rajsha
 INSERT INTO [Admin].[BookingOffice] (DestinationId, AddressLine1, Area, Email, PrimaryContact, Active) VALUES(SCOPE_IDENTITY(), '2/109 Shaheb Bazar Road', 'Rajshahi Sadar', 'rajshahi.sadar@vrs.com.bd', '01711665878', 1); 
 INSERT INTO [Admin].[Destination] (City, State, PostCode, Active) VALUES('Chittagong', 'Chittagong', 4000, 0);
 
-DECLARE @FromDestinationId BIGINT;
-DECLARE @ToDestinationId BIGINT;
-SELECT @FromDestinationId = Id FROM [Admin].[Destination] WHERE City = 'Dhaka';
-SELECT @ToDestinationId = Id FROM [Admin].[Destination] WHERE City = 'Rajshahi';
+DECLARE @DepartureId BIGINT;
+DECLARE @ArrivalId BIGINT;
+SELECT @DepartureId = Id FROM [Admin].[Destination] WHERE City = 'Dhaka';
+SELECT @ArrivalId = Id FROM [Admin].[Destination] WHERE City = 'Rajshahi';
+INSERT INTO [Admin].[Route] (DepartureId, ArrivalId, Active) VALUES(@DepartureId, @ArrivalId, 1);
+DECLARE @RouteId BIGINT;
+SET @RouteId = SCOPE_IDENTITY();
+
 
 INSERT INTO [Admin].[Operator] (Name, AddressLine1, AddressCity, AddressState, AddressPostCode, AddressCountry, PrimaryContact, PrimaryEmail, Active) VALUES('Greyhound', 'Ann St', 'Brisbane', 'QLD', '4000', 'Australia', '07 1122 3344', 'greyhound@email.com', 1);
-INSERT INTO [Admin].[RouteSchedule] (OperatorId, FromDestinationId, ToDestinationId, Day, Time, Active) VALUES(SCOPE_IDENTITY(), @FromDestinationId, @ToDestinationId, 1, '10:30:00', 1);
+INSERT INTO [Admin].[RouteSchedule] (OperatorId, RouteId, Day, Time, Active) VALUES(SCOPE_IDENTITY(), @RouteId, 1, '10:30:00', 1);

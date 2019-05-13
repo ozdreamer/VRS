@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Admin].[DropOffPoint]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[WaypointId] BIGINT NOT NULL,
+	[RouteId] BIGINT NOT NULL,
+	[Active] BIT NOT NULL
+)

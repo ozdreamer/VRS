@@ -115,14 +115,25 @@ namespace OZD.VRS.DataInterface
         }
 
         /// <summary>
+        /// Updates the route.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateRoute(Route from, ref Route to)
+        {
+            to.DepartureId = from.DepartureId;
+            to.ArrivalId = from.ArrivalId;
+            to.Active = from.Active;
+        }
+
+        /// <summary>
         /// Updates the route schedule.
         /// </summary>
         /// <param name="from">From.</param>
         /// <param name="to">To.</param>
         public static void UpdateRouteSchedule(RouteSchedule from, ref RouteSchedule to)
         {
-            to.FromDestinationId = from.FromDestinationId;
-            to.ToDestinationId = from.ToDestinationId;
+            to.RouteId = from.RouteId;
             to.Day = from.Day;
             to.Time = from.Time;
             to.Active = from.Active;
@@ -160,6 +171,62 @@ namespace OZD.VRS.DataInterface
             to.VehicleId = from.VehicleId;
             to.Date = from.Date;
             to.Active = from.Active;
+        }
+
+        /// <summary>
+        /// Updates the waypoint.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateWaypoint(Waypoint from, ref Waypoint to)
+        {
+            to.Name = from.Name;
+            to.City = from.City;
+            to.Active = from.Active;
+        }
+
+        /// <summary>
+        /// Updates the pickup point.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdatePickupPoint(PickupPoint from, ref PickupPoint to)
+        {
+            to.WaypointId = from.WaypointId;
+            to.RouteId = from.RouteId;
+            to.Active = from.Active;
+        }
+
+        /// <summary>
+        /// Updates the drop off point.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateDropOffPoint(DropOffPoint from, ref DropOffPoint to)
+        {
+            to.WaypointId = from.WaypointId;
+            to.RouteId = from.RouteId;
+            to.Active = from.Active;
+        }
+
+        /// <summary>
+        /// Updates the seat class.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateSeatClass(SeatClass from, ref SeatClass to)
+        {
+            to.Name = from.Name;
+        }
+
+        /// <summary>
+        /// Updates the amenity.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        public static void UpdateAmenity(Amenity from, ref Amenity to)
+        {
+            to.Name = from.Name;
         }
     }
 }

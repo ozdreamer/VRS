@@ -39,8 +39,6 @@ namespace OZD.VRS.Web.Controllers.API
         {
             var routeSchedule = this.databaseService.GetRouteSchedule(routeScheduleId);
             routeSchedule.OperatorName = routeSchedule.Operator?.Name;
-            routeSchedule.FromDestination = routeSchedule.From?.City;
-            routeSchedule.ToDestination = routeSchedule.To?.City;
             return JsonConvert.SerializeObject(routeSchedule);
         }
 

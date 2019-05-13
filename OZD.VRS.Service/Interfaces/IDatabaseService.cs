@@ -64,6 +64,37 @@ namespace OZD.VRS.Service.Interfaces
 
         #endregion
 
+        #region SeatClass
+
+        /// <summary>
+        /// Gets the seat class.
+        /// </summary>
+        /// <param name="seatClassId">The seat class identifier.</param>
+        /// <returns>The vehicle seat class.</returns>
+        SeatClass GetSeatClass(long seatClassId);
+
+        /// <summary>
+        /// Creates the seat class.
+        /// </summary>
+        /// <param name="seat class">The seat class.</param>
+        /// <returns>The new seat class.</returns>
+        SeatClass CreateSeatClass(SeatClass seatClass);
+
+        /// <summary>
+        /// Updates the seat class.
+        /// </summary>
+        /// <param name="seat class">The seat class.</param>
+        /// <returns>The updated seat class.</returns>
+        SeatClass UpdateSeatClass(SeatClass seatClass);
+
+        /// <summary>
+        /// Deletes the seat class.
+        /// </summary>
+        /// <param name="seatClassId">The seat class identifier.</param>
+        void DeleteSeatClass(long seatClassId);
+
+        #endregion
+
         #region Seat Layout
 
         /// <summary>
@@ -92,6 +123,43 @@ namespace OZD.VRS.Service.Interfaces
         /// </summary>
         /// <param name="seatLayoutId">The seat layout identifier.</param>
         void DeleteSeatLayout(long seatLayoutId);
+
+        #endregion
+
+        #region Amenity
+
+        /// <summary>
+        /// Gets the amenity.
+        /// </summary>
+        /// <param name="amenityId">The amenity identifier.</param>
+        /// <returns>The amenity.</returns>
+        Amenity GetAmenity(long amenityId);
+
+        /// <summary>
+        /// Gets all amenities.
+        /// </summary>
+        /// <returns>Collection of amenities.</returns>
+        ICollection<Amenity> GetAllAmenities();
+
+        /// <summary>
+        /// Creates the amenity.
+        /// </summary>
+        /// <param name="amenity">The amenity.</param>
+        /// <returns>The amenity.</returns>
+        Amenity CreateAmenity(Amenity amenity);
+
+        /// <summary>
+        /// Updates the amenity.
+        /// </summary>
+        /// <param name="amenity">The amenity.</param>
+        /// <returns>The updated amenity.</returns>
+        Amenity UpdateAmenity(Amenity amenity);
+
+        /// <summary>
+        /// Deletes the amenity.
+        /// </summary>
+        /// <param name="amenityId">The amenity identifier.</param>
+        void DeleteAmenity(long amenityId);
 
         #endregion
 
@@ -199,6 +267,113 @@ namespace OZD.VRS.Service.Interfaces
 
         #endregion
 
+        #region Waypoint
+
+        /// <summary>
+        /// Gets the waypoint.
+        /// </summary>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        /// <returns>The vehicle waypoint.</returns>
+        Waypoint GetWaypoint(long waypointId);
+
+        /// <summary>
+        /// Creates the waypoint.
+        /// </summary>
+        /// <param name="waypoint">The waypoint.</param>
+        /// <returns>The new waypoint.</returns>
+        Waypoint CreateWaypoint(Waypoint waypoint);
+
+        /// <summary>
+        /// Updates the waypoint.
+        /// </summary>
+        /// <param name="waypoint">The waypoint.</param>
+        /// <returns>The updated waypoint.</returns>
+        Waypoint UpdateWaypoint(Waypoint waypoint);
+
+        /// <summary>
+        /// Deletes the waypoint.
+        /// </summary>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        void DeleteWaypoint(long waypointId);
+
+        #endregion
+
+        #region Pickup Point
+
+        /// <summary>
+        /// Gets the pickup point.
+        /// </summary>
+        /// <param name="pickupPointId">The pickup point identifier.</param>
+        /// <returns>The vehicle pickup point.</returns>
+        PickupPoint GetPickupPoint(long pickupPointId);
+
+        /// <summary>
+        /// Gets the pickup points by route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>Collection of pickup point.</returns>
+        ICollection<PickupPoint> GetPickupPointsByRoute(long routeId);
+
+        /// <summary>
+        /// Creates the pickup point.
+        /// </summary>
+        /// <param name="pickupPoint">The pickup point.</param>
+        /// <returns>The new pickup point.</returns>
+        PickupPoint CreatePickupPoint(PickupPoint pickupPoint);
+
+        /// <summary>
+        /// Updates the pickup point.
+        /// </summary>
+        /// <param name="pickupPoint">The pickup point.</param>
+        /// <returns>The updated pickup point.</returns>
+        PickupPoint UpdatePickupPoint(PickupPoint pickupPoint);
+
+        /// <summary>
+        /// Deletes the pickup point.
+        /// </summary>
+        /// <param name="pickupPointId">The pickup point identifier.</param>
+        void DeletePickupPoint(long pickupPointId);
+
+        #endregion
+
+        #region Drop-Off Point
+
+        /// <summary>
+        /// Gets the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPointId">The drop-off point identifier.</param>
+        /// <returns>The vehicle drop-off point.</returns>
+        DropOffPoint GetDropOffPoint(long dropOffPointId);
+
+        /// <summary>
+        /// Gets the drop-off points by route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>Collection of drop-off point.</returns>
+        ICollection<DropOffPoint> GetDropOffPointsByRoute(long routeId);
+
+        /// <summary>
+        /// Creates the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPoint">The drop-off point.</param>
+        /// <returns>The new drop-off point.</returns>
+        DropOffPoint CreateDropOffPoint(DropOffPoint dropOffPoint);
+
+        /// <summary>
+        /// Updates the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPoint">The drop-off point .</param>
+        /// <returns>The updated drop-off point.</returns>
+        DropOffPoint UpdateDropOffPoint(DropOffPoint dropOffPoint);
+
+        /// <summary>
+        /// Deletes the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPointId">The drop-off point identifier.</param>
+        void DeleteDropOffPoint(long dropOffPointId);
+
+        #endregion
+
         #region Route
 
         /// <summary>
@@ -206,6 +381,37 @@ namespace OZD.VRS.Service.Interfaces
         /// </summary>
         /// <param name="routeId">The route identifier.</param>
         /// <returns>The vehicle route.</returns>
+        Route GetRoute(long routeId);
+
+        /// <summary>
+        /// Creates the route.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        /// <returns>The new route.</returns>
+        Route CreateRoute(Route route);
+
+        /// <summary>
+        /// Updates the route .
+        /// </summary>
+        /// <param name="route">The route .</param>
+        /// <returns>The updated route .</returns>
+        Route UpdateRoute(Route route);
+
+        /// <summary>
+        /// Deletes the route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        void DeleteRoute(long routeId);
+
+        #endregion
+
+        #region Route Schedule
+
+        /// <summary>
+        /// Gets the route schedule.
+        /// </summary>
+        /// <param name="routeId">The route schedule identifier.</param>
+        /// <returns>The vehicle route schedule.</returns>
         RouteSchedule GetRouteSchedule(long routeScheduleId);
 
         /// <summary>
@@ -223,9 +429,9 @@ namespace OZD.VRS.Service.Interfaces
         RouteSchedule UpdateRouteSchedule(RouteSchedule routeSchedule);
 
         /// <summary>
-        /// Deletes the route.
+        /// Deletes the route schedule.
         /// </summary>
-        /// <param name="route">The route.</param>
+        /// <param name="routeScheduleId">The route schedule identifier.</param>
         void DeleteRouteSchedule(long routeScheduleId);
 
         #endregion

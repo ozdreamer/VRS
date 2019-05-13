@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Admin].[Route]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[DepartureId] BIGINT NOT NULL,
+	[ArrivalId] BIGINT NOT NULL,
+	[Active] BIT NOT NULL
+)

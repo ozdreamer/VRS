@@ -74,12 +74,12 @@
     <Build Include="Admin\Constraints\UK_Vehicle_Registration.sql" />
     <Build Include="Admin\Tables\Vehicle.sql" />
     <Build Include="Admin\Admin.sql" />
-    <Build Include="Admin\Constraints\FK_RouteSchedule_FromDestinationId.sql" />
-    <Build Include="Admin\Constraints\FK_RouteSchedule_ToDestinationId.sql" />
+    <Build Include="Admin\Constraints\FK_Route_DepartureId.sql" />
+    <Build Include="Admin\Constraints\FK_Route_ArrivalId.sql" />
     <Build Include="Admin\Tables\RouteSchedule.sql" />
     <Build Include="Admin\Tables\Operator.sql" />
     <Build Include="Admin\Constraints\FK_RouteSchedule_OperatorId.sql" />
-    <Build Include="Admin\Constraints\CHK_RouteSchedule_SameDestinations.sql" />
+    <Build Include="Admin\Constraints\CHK_Route_SameDestinations.sql" />
     <Build Include="User\Tables\UserCredential.sql" />
     <Build Include="User\Tables\UserDetail.sql" />
     <Build Include="User\Constraints\CHK_UserDetail_PostalAddress.sql" />
@@ -94,6 +94,20 @@
     <Build Include="Admin\Constraints\FK_VehicleSchedule_VehicleId.sql" />
     <Build Include="User\Tables\Booking.sql" />
     <Build Include="Admin\Tables\SeatLayout.sql" />
+    <Build Include="Admin\Tables\SeatClass.sql" />
+    <Build Include="Admin\Tables\Amenity.sql" />
+    <Build Include="Admin\Constraints\UK_Amenity_Name.sql" />
+    <Build Include="Admin\Constraints\UK_SeatClass_Name.sql" />
+    <Build Include="Admin\Tables\Route.sql" />
+    <Build Include="Admin\Tables\Waypoint.sql" />
+    <Build Include="Admin\Tables\PickupPoint.sql" />
+    <Build Include="Admin\Tables\DropOffPoint.sql" />
+    <Build Include="Admin\Constraints\FK_PickupPoint_WaypointId.sql" />
+    <Build Include="Admin\Constraints\FK_PickupPoint_RouteId.sql" />
+    <Build Include="Admin\Constraints\FK_DropOffPoint_RouteId.sql" />
+    <Build Include="Admin\Constraints\FK_DropOffPoint_WaypointId.sql" />
+    <Build Include="Admin\Constraints\UK_PickupPoint_Composite.sql" />
+    <Build Include="Admin\Constraints\UK_DropOffPoint_Composite.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VRS.refactorlog" />

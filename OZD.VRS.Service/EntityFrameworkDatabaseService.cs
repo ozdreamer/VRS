@@ -140,6 +140,61 @@ namespace OZD.VRS.Service
 
         #endregion
 
+        #region SeatClass
+
+        /// <summary>
+        /// Gets the seat class.
+        /// </summary>
+        /// <param name="seatClassId">The seat class identifier.</param>
+        /// <returns>The vehicle seat class.</returns>
+        public SeatClass GetSeatClass(long seatClassId) => this.context.SeatClasses.FirstOrDefault(x => x.Id == seatClassId);
+
+        /// <summary>
+        /// Creates the seat class.
+        /// </summary>
+        /// <param name="seat class">The seat class.</param>
+        /// <returns>The new seat class.</returns>
+        public SeatClass CreateSeatClass(SeatClass seatClass)
+        {
+            this.context.SeatClasses.Add(seatClass);
+            this.context.SaveChanges();
+            return seatClass;
+        }
+
+        /// <summary>
+        /// Updates the seat class.
+        /// </summary>
+        /// <param name="seat class">The seat class.</param>
+        /// <returns>The updated seat class.</returns>
+        public SeatClass UpdateSeatClass(SeatClass seatClass)
+        {
+            var existingSeatClass = this.GetSeatClass(seatClass.Id);
+            if (existingSeatClass != null)
+            {
+                DataModelUpdater.UpdateSeatClass(seatClass, ref existingSeatClass);
+                this.context.Update(existingSeatClass);
+                this.context.SaveChanges();
+            }
+
+            return existingSeatClass;
+        }
+
+        /// <summary>
+        /// Deletes the seat class.
+        /// </summary>
+        /// <param name="seatClassId">The seat class identifier.</param>
+        public void DeleteSeatClass(long seatClassId)
+        {
+            var existingSeatClass = this.GetSeatClass(seatClassId);
+            if (existingSeatClass != null)
+            {
+                this.context.Remove(existingSeatClass);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
         #region Seat Layout
 
         /// <summary>
@@ -189,6 +244,67 @@ namespace OZD.VRS.Service
             if (existingSeatLayout != null)
             {
                 this.context.Remove(existingSeatLayout);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        #region Amenity
+
+        /// <summary>
+        /// Gets the amenity.
+        /// </summary>
+        /// <param name="amenityId">The amenity identifier.</param>
+        /// <returns>The amenity.</returns>
+        public Amenity GetAmenity(long amenityId) => this.context.Amenities.FirstOrDefault(x => x.Id == amenityId);
+
+        /// <summary>
+        /// Gets all amenities.
+        /// </summary>
+        /// <returns>Collection of amenities.</returns>
+        public ICollection<Amenity> GetAllAmenities() => this.context.Amenities.ToList();
+
+        /// <summary>
+        /// Creates the amenity.
+        /// </summary>
+        /// <param name="amenity">The amenity.</param>
+        /// <returns>The amenity.</returns>
+        public Amenity CreateAmenity(Amenity amenity)
+        {
+            this.context.Amenities.Add(amenity);
+            this.context.SaveChanges();
+            return amenity;
+        }
+
+        /// <summary>
+        /// Updates the amenity.
+        /// </summary>
+        /// <param name="amenity">The amenity.</param>
+        /// <returns>The updated amenity.</returns>
+        public Amenity UpdateAmenity(Amenity amenity)
+        {
+            var existingAmenity = this.GetAmenity(amenity.Id);
+            if (existingAmenity != null)
+            {
+                DataModelUpdater.UpdateAmenity(amenity, ref existingAmenity);
+                this.context.Update(existingAmenity);
+                this.context.SaveChanges();
+            }
+
+            return existingAmenity;
+        }
+
+        /// <summary>
+        /// Deletes the amenity.
+        /// </summary>
+        /// <param name="amenityId">The amenity identifier.</param>
+        public void DeleteAmenity(long amenityId)
+        {
+            var existingAmenity = this.GetAmenity(amenityId);
+            if (existingAmenity != null)
+            {
+                this.context.Remove(existingAmenity);
                 this.context.SaveChanges();
             }
         }
@@ -371,7 +487,241 @@ namespace OZD.VRS.Service
 
         #endregion
 
+        #region Waypoint
+
+        /// <summary>
+        /// Gets the waypoint.
+        /// </summary>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        /// <returns>The vehicle waypoint.</returns>
+        public Waypoint GetWaypoint(long waypointId) => this.context.Waypoints.FirstOrDefault(x => x.Id == waypointId);
+
+        /// <summary>
+        /// Creates the waypoint.
+        /// </summary>
+        /// <param name="waypoint">The waypoint.</param>
+        /// <returns>The new waypoint.</returns>
+        public Waypoint CreateWaypoint(Waypoint waypoint)
+        {
+            this.context.Waypoints.Add(waypoint);
+            this.context.SaveChanges();
+            return waypoint;
+        }
+
+        /// <summary>
+        /// Updates the waypoint.
+        /// </summary>
+        /// <param name="waypoint">The waypoint.</param>
+        /// <returns>The updated waypoint.</returns>
+        public Waypoint UpdateWaypoint(Waypoint waypoint)
+        {
+            var existingWaypoint = this.GetWaypoint(waypoint.Id);
+            if (existingWaypoint != null)
+            {
+                DataModelUpdater.UpdateWaypoint(waypoint, ref existingWaypoint);
+                this.context.Waypoints.Update(existingWaypoint);
+                this.context.SaveChanges();
+            }
+
+            return existingWaypoint;
+        }
+
+        /// <summary>
+        /// Deletes the waypoint.
+        /// </summary>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        public void DeleteWaypoint(long waypointId)
+        {
+            var existingWaypoint = this.GetWaypoint(waypointId);
+            if (existingWaypoint != null)
+            {
+                this.context.Waypoints.Remove(existingWaypoint);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        #region Pickup Point
+
+        /// <summary>
+        /// Gets the pickup point.
+        /// </summary>
+        /// <param name="pickupPointId">The pickup point identifier.</param>
+        /// <returns>The vehicle pickup point.</returns>
+        public PickupPoint GetPickupPoint(long pickupPointId) => this.context.PickupPoints.FirstOrDefault(x => x.Id == pickupPointId);
+
+        /// <summary>
+        /// Gets the pickup points by route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>Collection of pickup point.</returns>
+        public ICollection<PickupPoint> GetPickupPointsByRoute(long routeId) => this.context.PickupPoints.Where(x => x.RouteId == routeId).ToList();
+
+        /// <summary>
+        /// Creates the pickup point.
+        /// </summary>
+        /// <param name="pickupPoint">The pickup point.</param>
+        /// <returns>The new pickup point.</returns>
+        public PickupPoint CreatePickupPoint(PickupPoint pickupPoint)
+        {
+            this.context.PickupPoints.Add(pickupPoint);
+            this.context.SaveChanges();
+            return pickupPoint;
+        }
+
+        /// <summary>
+        /// Updates the pickup point.
+        /// </summary>
+        /// <param name="pickupPoint">The pickup point.</param>
+        /// <returns>The updated pickup point.</returns>
+        public PickupPoint UpdatePickupPoint(PickupPoint pickupPoint)
+        {
+            var existingPickupPoint = this.GetPickupPoint(pickupPoint.Id);
+            if (existingPickupPoint != null)
+            {
+                DataModelUpdater.UpdatePickupPoint(pickupPoint, ref existingPickupPoint);
+                this.context.PickupPoints.Update(existingPickupPoint);
+                this.context.SaveChanges();
+            }
+
+            return existingPickupPoint;
+        }
+
+        /// <summary>
+        /// Deletes the pickup point.
+        /// </summary>
+        /// <param name="pickupPointId">The pickup point identifier.</param>
+        public void DeletePickupPoint(long pickupPointId)
+        {
+            var existingPickupPoint = this.GetPickupPoint(pickupPointId);
+            if (existingPickupPoint != null)
+            {
+                this.context.PickupPoints.Remove(existingPickupPoint);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        #region Drop-Off Point
+
+        /// <summary>
+        /// Gets the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPointId">The drop-off point identifier.</param>
+        /// <returns>The vehicle drop-off point.</returns>
+        public DropOffPoint GetDropOffPoint(long dropOffPointId) => this.context.DropOffPoints.FirstOrDefault(x => x.Id == dropOffPointId);
+
+        /// <summary>
+        /// Gets the drop-off points by route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>Collection of drop-off point.</returns>
+        public ICollection<DropOffPoint> GetDropOffPointsByRoute(long routeId) => this.context.DropOffPoints.Where(x => x.RouteId == routeId).ToList();
+
+        /// <summary>
+        /// Creates the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPoint">The drop-off point.</param>
+        /// <returns>The new drop-off point.</returns>
+        public DropOffPoint CreateDropOffPoint(DropOffPoint dropOffPoint)
+        {
+            this.context.DropOffPoints.Add(dropOffPoint);
+            this.context.SaveChanges();
+            return dropOffPoint;
+        }
+
+        /// <summary>
+        /// Updates the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPoint">The drop-off point .</param>
+        /// <returns>The updated drop-off point.</returns>
+        public DropOffPoint UpdateDropOffPoint(DropOffPoint dropOffPoint)
+        {
+            var existingDropOffPoint = this.GetDropOffPoint(dropOffPoint.Id);
+            if (existingDropOffPoint != null)
+            {
+                DataModelUpdater.UpdateDropOffPoint(dropOffPoint, ref existingDropOffPoint);
+                this.context.DropOffPoints.Update(existingDropOffPoint);
+                this.context.SaveChanges();
+            }
+
+            return existingDropOffPoint;
+        }
+
+        /// <summary>
+        /// Deletes the drop-off point.
+        /// </summary>
+        /// <param name="dropOffPointId">The drop-off point identifier.</param>
+        public void DeleteDropOffPoint(long dropOffPointId)
+        {
+            var existingDropOffPoint = this.GetDropOffPoint(dropOffPointId);
+            if (existingDropOffPoint != null)
+            {
+                this.context.DropOffPoints.Remove(existingDropOffPoint);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
         #region Route
+
+        /// <summary>
+        /// Gets the route.
+        /// </summary>
+        /// <param name="routeId">The route identifier.</param>
+        /// <returns>The vehicle route.</returns>
+        public Route GetRoute(long routeId) => this.context.Routes.FirstOrDefault(x => x.Id == routeId);
+
+        /// <summary>
+        /// Creates the route .
+        /// </summary>
+        /// <param name="route">The route .</param>
+        /// <returns>The route .</returns>
+        public Route CreateRoute(Route route)
+        {
+            this.context.Routes.Add(route);
+            this.context.SaveChanges();
+            return route;
+        }
+
+        /// <summary>
+        /// Updates the route.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        /// <returns>The updated route.</returns>
+        public Route UpdateRoute(Route route)
+        {
+            var existingRoute = this.GetRoute(route.Id);
+            if (existingRoute != null)
+            {
+                DataModelUpdater.UpdateRoute(route, ref existingRoute);
+                this.context.Routes.Update(existingRoute);
+                this.context.SaveChanges();
+            }
+
+            return existingRoute;
+        }
+
+        /// <summary>
+        /// Deletes the route.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        public void DeleteRoute(long routeId)
+        {
+            var existingRoute = this.GetRoute(routeId);
+            if (existingRoute != null)
+            {
+                this.context.Routes.Remove(existingRoute);
+                this.context.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        #region Route Schedule
 
         /// <summary>
         /// Gets the route.
@@ -486,20 +836,20 @@ namespace OZD.VRS.Service
 
         #endregion
         
-        #region Vehicle
+        #region Vehicle Schedule
 
         /// <summary>
-        /// Gets the vehicle.
+        /// Gets the vehicle schedule.
         /// </summary>
         /// <param name="vehicleScheduleId">The vehicle schedule identifier.</param>
-        /// <returns>The vehicle vehicle schedule.</returns>
+        /// <returns>The vehicle schedule.</returns>
         public VehicleSchedule GetVehicleSchedule(long vehicleScheduleId) => this.context.VehicleSchedules.FirstOrDefault(x => x.Id == vehicleScheduleId);
 
         /// <summary>
         /// Creates the vehicle schedule.
         /// </summary>
         /// <param name="vehicleSchedule">The vehicle schedule.</param>
-        /// <returns>The vehicle schedule.</returns>
+        /// <returns>The new vehicle schedule.</returns>
         public VehicleSchedule CreateVehicleSchedule(VehicleSchedule vehicleSchedule)
         {
             this.context.VehicleSchedules.Add(vehicleSchedule);

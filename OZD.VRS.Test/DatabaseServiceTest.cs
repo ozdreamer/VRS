@@ -208,17 +208,21 @@ namespace OZD.VRS.Test
 
             var fleetOperator = new Operator { Name = "Test Operator", AddressLine1 = "58 Portree Cres", AddressCity = "Heathwood", AddressPostCode = "4110", AddressState = "QLD", AddressCountry = "Australia", PrimaryContact = "0411342791", PrimaryEmail = "operator1@email.com", Active = true };
             fleetOperator = databaseService.CreateOperator(fleetOperator);
+
             var destination1 = new Destination { City = "Test Location 1", State = "Test Location 1", PostCode = 1000, Active = true };
             destination1 = databaseService.CreateDestination(destination1);
             var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000, Active = true };
             destination2 = databaseService.CreateDestination(destination2);
 
-            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
+            var route = new Route { DepartureId = destination1.Id, ArrivalId = destination2.Id, Active = true };
+            route = databaseService.CreateRoute(route);
+
+            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, RouteId = route.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
             routeSchedule = databaseService.CreateRouteSchedule(routeSchedule);
 
             routeSchedule = databaseService.GetRouteSchedule(routeSchedule.Id);
-            Assert.AreEqual(routeSchedule.From?.City, "Test Location 1");
-            Assert.AreEqual(routeSchedule.To?.City, "Test Location 2");
+            Assert.AreEqual(routeSchedule.Route.Departure.City, "Test Location 1");
+            Assert.AreEqual(routeSchedule.Route.Arrival.City, "Test Location 2");
             Assert.AreEqual(routeSchedule.Time, new TimeSpan(9, 0, 0));
 
             routeSchedule.Day = DayOfWeek.Friday;
@@ -232,6 +236,7 @@ namespace OZD.VRS.Test
             databaseService.DeleteRouteSchedule(routeSchedule.Id);
             Assert.AreEqual(databaseService.GetRouteSchedule(routeSchedule.Id), null);
 
+            databaseService.DeleteRoute(route.Id);
             databaseService.DeleteDestination(destination1.Id);
             databaseService.DeleteDestination(destination2.Id);
             databaseService.DeleteOperator(fleetOperator.Id);
@@ -371,7 +376,10 @@ namespace OZD.VRS.Test
             var destination2 = new Destination { City = "Test Location 2", State = "Test Location 2", PostCode = 6000, Active = true };
             destination2 = databaseService.CreateDestination(destination2);
 
-            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, FromDestinationId = destination1.Id, ToDestinationId = destination2.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
+            var route = new Route { DepartureId = destination1.Id, ArrivalId = destination2.Id, Active = true };
+            route = databaseService.CreateRoute(route);
+
+            var routeSchedule = new RouteSchedule { OperatorId = fleetOperator.Id, RouteId = route.Id, Day = DayOfWeek.Monday, Time = new TimeSpan(9, 0, 0), Active = true };
             routeSchedule = databaseService.CreateRouteSchedule(routeSchedule);
 
             var layout = new SeatLayout { Rows = 10, Columns = 4, Layout = "A1:B1;A2:B2;A3,B3:C3,D3", Active = true };
@@ -405,6 +413,7 @@ namespace OZD.VRS.Test
             databaseService.DeleteVehicle(vehicle.Id);
             databaseService.DeleteSeatLayout(layout.Id);
             databaseService.DeleteRouteSchedule(routeSchedule.Id);
+            databaseService.DeleteRoute(route.Id);
             databaseService.DeleteDestination(destination1.Id);
             databaseService.DeleteDestination(destination2.Id);
             databaseService.DeleteOperator(fleetOperator.Id);
